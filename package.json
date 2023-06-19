@@ -2,7 +2,7 @@
   "name": "nuxt-pdfmake",
   "version": "0.0.3",
   "description": "Easily generate PDFs in Nuxt.js using pdfmake",
-  "repository": "your-org/my-module",
+  "repository": "https://github.com/BayBreezy/nuxt-pdfmake",
   "author": {
     "name": "Behon Baker",
     "email": "behon.baker@yahoo.com",
