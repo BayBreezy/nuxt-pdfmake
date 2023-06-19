@@ -10,12 +10,17 @@
     "lint": "eslint ."
   },
   "devDependencies": {
-    "@nuxt-themes/docus": "^1.12.1",
-    "@nuxt/devtools": "^0.5.5",
+    "@nuxt-themes/docus": "^1.12.3",
+    "@nuxt/devtools": "^0.6.1",
     "@nuxt/eslint-config": "^0.1.1",
+    "@nuxthq/ui": "^2.4.0",
     "@nuxtjs/plausible": "^0.2.1",
-    "@types/node": "^20.2.5",
-    "eslint": "^8.42.0",
-    "nuxt": "^3.5.3"
+    "@types/node": "^20.3.1",
+    "eslint": "^8.43.0",
+    "nuxt": "^3.5.3",
+    "nuxt-pdfmake": "^0.0.3"
+  },
+  "dependencies": {
+    "@tato30/vue-pdf": "^1.5.1"
   }
 }
