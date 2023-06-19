@@ -1,0 +1,32 @@
+export default defineAppConfig({
+  docus: {
+    title: "Nuxt PDFMake",
+    titleTemplate: "Nuxt PDFMake",
+    description: "Nuxt PDFMake is a Nuxt module to generate PDFs with PDFMake",
+    image:
+      "https://user-images.githubusercontent.com/904724/185365452-87b7ca7b-6030-4813-a2db-5e65c785bf88.png",
+    socials: {
+      twitter: "iAm_BayBreezy",
+      github: "BayBreezy",
+      youtube: "channel/UC2TD0i0-m8Jy0nAbpoYYCDQ",
+    },
+    github: {
+      dir: ".starters/default/content",
+      branch: "main",
+      repo: "docus",
+      owner: "nuxt-themes",
+      edit: true,
+    },
+    header: {
+      logo: true,
+    },
+    footer: {
+      iconLinks: [
+        {
+          href: "https://behonbaker.com",
+          icon: "heroicons:globe-alt",
+        },
+      ],
+    },
+  },
+});
