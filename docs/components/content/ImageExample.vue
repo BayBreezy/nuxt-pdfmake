@@ -5,24 +5,22 @@
 </template>
 
 <script setup lang="ts">
-import { _colors } from "#tailwind-config/theme";
-
-let pdfLink = ref();
+const pdfLink = ref();
 
 const getBase64ImageFromURL = (url: string) => {
   return new Promise((resolve, reject) => {
-    var img = new Image();
+    const img = new Image();
     img.setAttribute("crossOrigin", "anonymous");
 
     img.onload = () => {
-      var canvas = document.createElement("canvas");
+      const canvas = document.createElement("canvas");
       canvas.width = img.width;
       canvas.height = img.height;
 
       const ctx = canvas.getContext("2d");
       ctx?.drawImage(img, 0, 0);
 
-      var dataURL = canvas.toDataURL("image/jpeg");
+      const dataURL = canvas.toDataURL("image/jpeg");
 
       resolve(dataURL);
     };
@@ -50,7 +48,7 @@ const loadPdf = async () => {
           margin: [0, 0, 0, 20],
         },
         {
-          image: img,
+          image: img as any,
           width: 350,
         },
         {

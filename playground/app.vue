@@ -1,7 +1,10 @@
 <template>
   <div>
     <UContainer>
-      <UButton label="Export" @click="exportData" />
+      <UButton
+        label="Export"
+        @click="exportData"
+      />
     </UContainer>
   </div>
 </template>

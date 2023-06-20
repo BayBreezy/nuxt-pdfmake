@@ -5,9 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import { _colors } from "#tailwind-config/theme";
-
-let pdfLink = ref();
+const pdfLink = ref();
 
 const loadPdf = () => {
   const { $pdfMake } = useNuxtApp();
@@ -404,10 +402,10 @@ const loadPdf = () => {
             vLineWidth: function (i, node) {
               return i === 0 || i === node.table.widths?.length ? 2 : 1;
             },
-            hLineColor: function (i, node) {
+            hLineColor: function () {
               return "black";
             },
-            vLineColor: function (i, node) {
+            vLineColor: function () {
               return "black";
             },
             hLineStyle: function (i, node) {

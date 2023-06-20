@@ -7,7 +7,7 @@
 <script setup lang="ts">
 import { _colors } from "#tailwind-config/theme";
 
-let pdfLink = ref();
+const pdfLink = ref();
 
 const loadPdf = async () => {
   const { $pdfMake } = useNuxtApp();
