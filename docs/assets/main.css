@@ -4,3 +4,8 @@
     sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
     "Noto Color Emoji";
 }
+
+pre {
+  max-height: 700px;
+  overflow: auto;
+}

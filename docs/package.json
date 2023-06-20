@@ -1,7 +1,7 @@
 {
-  "name": "docus-starter",
+  "name": "nuxt-pdfmake-docs",
   "version": "0.1.0",
-  "private": true,
+  "repository": "https://github.com/BayBreezy/nuxt-pdfmake",
   "scripts": {
     "dev": "nuxi dev",
     "build": "nuxi build",
@@ -14,7 +14,6 @@
     "@nuxt/devtools": "^0.6.1",
     "@nuxt/eslint-config": "^0.1.1",
     "@nuxthq/ui": "^2.4.0",
-    "@nuxtjs/plausible": "^0.2.1",
     "@types/node": "^20.3.1",
     "eslint": "^8.43.0",
     "nuxt": "^3.5.3"

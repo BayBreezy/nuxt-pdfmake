@@ -1,14 +1,8 @@
+import pdfMake from "../src/module";
 export default defineNuxtConfig({
   // https://github.com/nuxt-themes/docus
   extends: "@nuxt-themes/docus",
-
-  modules: [
-    // https://github.com/nuxt-modules/plausible
-    "@nuxtjs/plausible", // https://github.com/nuxt/devtools
-    "@nuxt/devtools",
-    "@nuxthq/ui",
-    "nuxt-pdfmake",
-  ],
+  modules: ["@nuxt/devtools", "@nuxthq/ui", pdfMake],
 
   css: ["~/assets/main.css"],
   app: {

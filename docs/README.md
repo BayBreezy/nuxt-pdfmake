@@ -1,57 +1,52 @@
-# Docus Starter
+# Nuxt PDFMake
 
-Starter template for [Docus](https://docus.dev).
+[![npm version][npm-version-src]][npm-version-href]
+[![npm downloads][npm-downloads-src]][npm-downloads-href]
+[![License][license-src]][license-href]
+[![Nuxt][nuxt-src]][nuxt-href]
 
-## Clone
+Easily add <a target="_blank" href="http://pdfmake.org/#/">pdfMake</a> to your Nuxt 3 application.
 
-Clone the repository (using `nuxi`):
+- [✨ &nbsp;Release Notes](/CHANGELOG.md)
+  <!-- - [🏀 Online playground](https://stackblitz.com/github/your-org/nuxt-pdfmake?file=playground%2Fapp.vue) -->
+  <!-- - [📖 &nbsp;Documentation](https://example.com) -->
 
-```bash
-npx nuxi init -t themes/docus
-```
+## Documentation
 
-## Setup
+See the documentation here: [Nuxt PDFMake](https://nuxt-pdfmake.behonbaker.com/)
 
-Install dependencies:
+## Quick Setup
 
-```bash
-yarn install
-```
-
-## Development
-
-```bash
-yarn dev
-```
-
-## Edge Side Rendering
-
-Can be deployed to Vercel Functions, Netlify Functions, AWS, and most Node-compatible environments.
-
-Look at all the available presets [here](https://v3.nuxtjs.org/guide/deploy/presets).
+1. Add `nuxt-pdfmake` dependency to your project
 
 ```bash
-yarn build
+# Using pnpm
+pnpm add -D nuxt-pdfmake
+
+# Using yarn
+yarn add --dev nuxt-pdfmake
+
+# Using npm
+npm install --save-dev nuxt-pdfmake
 ```
 
-## Static Generation
+2. Add `nuxt-pdfmake` to the `modules` section of `nuxt.config.ts`
 
-Use the `generate` command to build your application.
-
-The HTML files will be generated in the .output/public directory and ready to be deployed to any static compatible hosting.
-
-```bash
-yarn generate
+```js
+export default defineNuxtConfig({
+  modules: ["nuxt-pdfmake"],
+});
 ```
 
-## Preview build
+That's it! You can now use Nuxt PDFMake in your Nuxt app ✨
 
-You might want to preview the result of your build locally, to do so, run the following command:
+<!-- Badges -->
 
-```bash
-yarn preview
-```
-
----
-
-For a detailed explanation of how things work, check out [Docus](https://docus.dev).
+[npm-version-src]: https://img.shields.io/npm/v/nuxt-pdfmake/latest.svg?style=flat&colorA=18181B&colorB=28CF8D
+[npm-version-href]: https://npmjs.com/package/nuxt-pdfmake
+[npm-downloads-src]: https://img.shields.io/npm/dm/nuxt-pdfmake.svg?style=flat&colorA=18181B&colorB=28CF8D
+[npm-downloads-href]: https://npmjs.com/package/nuxt-pdfmake
+[license-src]: https://img.shields.io/npm/l/nuxt-pdfmake.svg?style=flat&colorA=18181B&colorB=28CF8D
+[license-href]: https://npmjs.com/package/nuxt-pdfmake
+[nuxt-src]: https://img.shields.io/badge/Nuxt-18181B?logo=nuxt.js
+[nuxt-href]: https://nuxt.com
