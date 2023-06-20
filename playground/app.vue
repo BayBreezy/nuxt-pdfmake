@@ -1,8 +1,14 @@
 <template>
   <div>
     <UContainer>
-      <UButton label="Export" @click="exportData" />
-      <UButton label="Export Composable" @click="exportComposable" />
+      <UButton
+        label="Export"
+        @click="exportData"
+      />
+      <UButton
+        label="Export Composable"
+        @click="exportComposable"
+      />
     </UContainer>
   </div>
 </template>
