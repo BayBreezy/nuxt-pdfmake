@@ -17,9 +17,6 @@
     "@types/node": "^20.3.1",
     "eslint": "^8.43.0",
     "nuxt": "^3.5.3",
-    "nuxt-pdfmake": "^0.0.5"
-  },
-  "dependencies": {
-    "@tato30/vue-pdf": "^1.5.1"
+    "nuxt-pdfmake": "^0.0.6"
   }
 }
