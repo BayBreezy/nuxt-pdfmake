@@ -4,11 +4,10 @@ export default defineNuxtConfig({
 
   modules: [
     // https://github.com/nuxt-modules/plausible
-    "@nuxtjs/plausible",
-    // https://github.com/nuxt/devtools
+    "@nuxtjs/plausible", // https://github.com/nuxt/devtools
     "@nuxt/devtools",
-    "nuxt-pdfmake",
     "@nuxthq/ui",
+    "nuxt-pdfmake",
   ],
 
   css: ["~/assets/main.css"],
