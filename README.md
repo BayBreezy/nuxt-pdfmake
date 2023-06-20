@@ -1,3 +1,5 @@
+![Cover](/docs/public/cover.png)
+
 # Nuxt PDFMake
 
 [![npm version][npm-version-src]][npm-version-href]
