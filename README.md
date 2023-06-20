@@ -40,7 +40,21 @@ export default defineNuxtConfig({
 });
 ```
 
-That's it! You can now use Nuxt PDFMake in your Nuxt app ✨
+That's it! You can now use Nuxt PDFMake in your Nuxt app ✨.
+
+## Usage
+
+You can use the `$pdfMake` variable inside a function
+
+```ts
+const { $pdfMake } = useNuxtApp();
+```
+
+Or you can use the `usePDFMake` composable
+
+```ts
+const pdfMake = usePDFMake();
+```
 
 ## Development
 

@@ -1,8 +1,34 @@
-import { defineNuxtModule, addPlugin, createResolver } from "@nuxt/kit";
+import {
+  defineNuxtModule,
+  addPlugin,
+  createResolver,
+  addImportsDir,
+} from "@nuxt/kit";
 import { version, name } from "../package.json";
 
 // Module options TypeScript interface definition
-export interface ModuleOptions {}
+export interface ModuleOptions {
+  /**
+   * Enable the module
+   * @default true
+   */
+  enabled?: boolean;
+  /**
+   * Enable the plugin injection
+   * @default true
+   */
+  enablePlugin?: boolean;
+  /**
+   * Enable the composable injection. This adds both the `usePDFMake` & `useFontPresets` composables
+   * @default true
+   */
+  enableComposable?: boolean;
+  /**
+   * Enable the devtools tab
+   * @default true
+   */
+  enableDevtools?: boolean;
+}
 
 export default defineNuxtModule<ModuleOptions>({
   meta: {
@@ -14,24 +40,39 @@ export default defineNuxtModule<ModuleOptions>({
     },
   },
   // Default configuration options of the Nuxt module
-  defaults: {},
+  defaults: {
+    enabled: true,
+    enablePlugin: true,
+    enableComposable: true,
+    enableDevtools: true,
+  },
   setup(options, nuxt) {
     const resolver = createResolver(import.meta.url);
 
-    nuxt.options.app.head.script ||= [];
-    nuxt.options.app.head.script.push(
-      {
-        src: "https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js",
-      },
-      {
-        src: "https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.min.js",
-      }
-    );
+    if (!options.enabled) return;
 
-    // Do not add the extension since the `.ts` will be transpiled to `.mjs` after `npm run prepack`
-    addPlugin(resolver.resolve("./runtime/pdfmake.client"));
+    // Add plugin
+    if (options.enablePlugin) {
+      nuxt.options.app.head.script ||= [];
+      nuxt.options.app.head.script.push(
+        {
+          src: "https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js",
+        },
+        {
+          src: "https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.min.js",
+        }
+      );
+      // Do not add the extension since the `.ts` will be transpiled to `.mjs` after `npm run prepack`
+      addPlugin(resolver.resolve("./runtime/pdfmake.client"));
+    }
+
+    // Add composable
+    if (options.enableComposable) {
+      addImportsDir(resolver.resolve("./runtime/composables"));
+    }
 
     // Add devtools tab
+    if (!options.enableDevtools) return;
     //@ts-ignore
     nuxt.hook("devtools:customTabs", (iframeTabs) => {
       iframeTabs.push({
