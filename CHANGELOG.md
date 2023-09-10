@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v0.0.9
+
+[compare changes](https://github.com/BayBreezy/nuxt-pdfmake/compare/v0.0.7...v0.0.9)
+
+### 🏡 Chore
+
+- **release:** V0.0.7 ([c785a0c](https://github.com/BayBreezy/nuxt-pdfmake/commit/c785a0c))
+
+### ❤️ Contributors
+
+- Behon Baker <behon.baker@yahoo.com>
+
 ## v0.0.7
 
 [compare changes](https://github.com/BayBreezy/nuxt-pdfmake/compare/v0.0.7...v0.0.7)
