@@ -3,6 +3,10 @@
 
 ## v0.0.7
 
+[compare changes](https://github.com/BayBreezy/nuxt-pdfmake/compare/v0.0.7...v0.0.7)
+
+## v0.0.7
+
 [compare changes](https://github.com/BayBreezy/nuxt-pdfmake/compare/v0.0.6...v0.0.7)
 
 ### 📖 Documentation
