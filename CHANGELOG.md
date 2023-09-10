@@ -1,6 +1,27 @@
 # Changelog
 
 
+## v0.0.7
+
+[compare changes](https://github.com/BayBreezy/nuxt-pdfmake/compare/v0.0.6...v0.0.7)
+
+### 📖 Documentation
+
+- **docs:** Add composable docs ([a5fdbcc](https://github.com/BayBreezy/nuxt-pdfmake/commit/a5fdbcc))
+
+### 🏡 Chore
+
+- Update deps & change pkg manager to yarn ([507319b](https://github.com/BayBreezy/nuxt-pdfmake/commit/507319b))
+
+### 🎨 Styles
+
+- **playground:** Formatted ([fe0176c](https://github.com/BayBreezy/nuxt-pdfmake/commit/fe0176c))
+
+### ❤️ Contributors
+
+- Behon Baker <behon.baker@yahoo.com>
+- BayBreezy <behon.baker@yahoo.com>
+
 ## v0.0.6
 
 [compare changes](https://github.com/BayBreezy/nuxt-pdfmake/compare/v0.0.5...v0.0.6)
