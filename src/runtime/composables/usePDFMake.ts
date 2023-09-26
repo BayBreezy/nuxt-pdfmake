@@ -1,6 +1,4 @@
 import * as pdfMake from "pdfmake/build/pdfmake";
-import { useFontPresets } from "./fontPresets";
-import { TFontDictionary } from "pdfmake/interfaces";
 
 /**
  * A composable that returns the pdfMake instance.
