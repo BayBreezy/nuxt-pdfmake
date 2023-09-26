@@ -35,7 +35,7 @@
     "dev:build": "nuxi build playground",
     "dev:prepare": "nuxt-module-build --stub && nuxi prepare playground",
     "start:dev": "yarn prepack && yarn dev:build && node playground/.output/server/index.mjs",
-    "release": "yarn lint && yarn test && yarn prepack && changelogen --release && npm publish && git push --follow-tags",
+    "release": "npm run lint && npm run test && npm run prepack && changelogen --release && npm publish && git push --follow-tags",
     "lint": "eslint . --fix",
     "test": "vitest run",
     "test:watch": "vitest watch"
