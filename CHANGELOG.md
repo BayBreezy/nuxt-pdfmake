@@ -1,6 +1,23 @@
 # Changelog
 
 
+## v0.0.12
+
+[compare changes](https://github.com/BayBreezy/nuxt-pdfmake/compare/v0.0.11...v0.0.12)
+
+### 🩹 Fixes
+
+- **composable:** Change how composable is exported ([93bde56](https://github.com/BayBreezy/nuxt-pdfmake/commit/93bde56))
+
+### 🏡 Chore
+
+- **release:** V0.0.11 ([beb6616](https://github.com/BayBreezy/nuxt-pdfmake/commit/beb6616))
+- Update docs deps ([65c9564](https://github.com/BayBreezy/nuxt-pdfmake/commit/65c9564))
+
+### ❤️ Contributors
+
+- Behon Baker <behon.baker@yahoo.com>
+
 ## v0.0.11
 
 [compare changes](https://github.com/BayBreezy/nuxt-pdfmake/compare/v0.0.10...v0.0.11)
