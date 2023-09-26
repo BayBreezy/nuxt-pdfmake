@@ -16,10 +16,5 @@ import { TFontDictionary } from "pdfmake/interfaces";
  * @see https://pdfmake.github.io/docs/0.1/getting-started/client-side/methods/
  */
 export const usePDFMake = () => {
-  const pdfFonts: TFontDictionary = {
-    Roboto: useFontPresets().Roboto,
-  };
-  (<any>pdfMake).vfs = pdfFonts;
-
   return pdfMake;
 };
