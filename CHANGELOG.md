@@ -1,6 +1,19 @@
 # Changelog
 
 
+## v0.0.11
+
+[compare changes](https://github.com/BayBreezy/nuxt-pdfmake/compare/v0.0.10...v0.0.11)
+
+### 🏡 Chore
+
+- **release:** V0.0.10 ([bdfb87e](https://github.com/BayBreezy/nuxt-pdfmake/commit/bdfb87e))
+- Change release script to use npm ([f7127f4](https://github.com/BayBreezy/nuxt-pdfmake/commit/f7127f4))
+
+### ❤️ Contributors
+
+- Behon Baker <behon.baker@yahoo.com>
+
 ## v0.0.10
 
 [compare changes](https://github.com/BayBreezy/nuxt-pdfmake/compare/v0.0.9...v0.0.10)
