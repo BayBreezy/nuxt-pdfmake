@@ -1,6 +1,22 @@
 # Changelog
 
 
+## v0.0.10
+
+[compare changes](https://github.com/BayBreezy/nuxt-pdfmake/compare/v0.0.9...v0.0.10)
+
+### 🩹 Fixes
+
+- Update deps & fix composable ([609c15a](https://github.com/BayBreezy/nuxt-pdfmake/commit/609c15a))
+
+### 🏡 Chore
+
+- Removed unused vars ([45fdc15](https://github.com/BayBreezy/nuxt-pdfmake/commit/45fdc15))
+
+### ❤️ Contributors
+
+- Behon Baker <behon.baker@yahoo.com>
+
 ## v0.0.9
 
 [compare changes](https://github.com/BayBreezy/nuxt-pdfmake/compare/v0.0.7...v0.0.9)
