@@ -14,11 +14,6 @@ export interface ModuleOptions {
    */
   enabled?: boolean;
   /**
-   * Enable the plugin injection
-   * @default true
-   */
-  enablePlugin?: boolean;
-  /**
    * Enable the composable injection. This adds both the `usePDFMake` & `useFontPresets` composables
    * @default true
    */
@@ -42,7 +37,6 @@ export default defineNuxtModule<ModuleOptions>({
   // Default configuration options of the Nuxt module
   defaults: {
     enabled: true,
-    enablePlugin: true,
     enableComposable: true,
     enableDevtools: true,
   },
@@ -52,19 +46,7 @@ export default defineNuxtModule<ModuleOptions>({
     if (!options.enabled) return;
 
     // Add plugin
-    if (options.enablePlugin) {
-      nuxt.options.app.head.script ||= [];
-      nuxt.options.app.head.script.push(
-        {
-          src: "https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js",
-        },
-        {
-          src: "https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.min.js",
-        }
-      );
-      // Do not add the extension since the `.ts` will be transpiled to `.mjs` after `npm run prepack`
-      addPlugin(resolver.resolve("./runtime/pdfmake.client"));
-    }
+    addPlugin(resolver.resolve("./runtime/pdfmake.client"));
 
     // Add composable
     if (options.enableComposable) {

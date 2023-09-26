@@ -56,6 +56,7 @@
     "changelogen": "^0.5.5",
     "eslint": "^8.50.0",
     "nuxt": "^3.7.4",
+    "postcss-custom-properties": "^13.3.2",
     "vitest": "^0.34.5"
   }
 }
