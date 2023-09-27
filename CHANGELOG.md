@@ -1,6 +1,22 @@
 # Changelog
 
 
+## v0.0.13
+
+[compare changes](https://github.com/BayBreezy/nuxt-pdfmake/compare/v0.0.12...v0.0.13)
+
+### 📖 Documentation
+
+- Update package version ([01d5b13](https://github.com/BayBreezy/nuxt-pdfmake/commit/01d5b13))
+
+### 🏡 Chore
+
+- **release:** V0.0.12 ([1138a11](https://github.com/BayBreezy/nuxt-pdfmake/commit/1138a11))
+
+### ❤️ Contributors
+
+- Behon Baker <behon.baker@yahoo.com>
+
 ## v0.0.12
 
 [compare changes](https://github.com/BayBreezy/nuxt-pdfmake/compare/v0.0.11...v0.0.12)
