@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v0.0.14
+
+[compare changes](https://github.com/BayBreezy/nuxt-pdfmake/compare/v0.0.13...v0.0.14)
+
+### 🩹 Fixes
+
+- Fix vfs error ([7faaf84](https://github.com/BayBreezy/nuxt-pdfmake/commit/7faaf84))
+
+### ❤️ Contributors
+
+- Behon Baker <behon.baker@yahoo.com>
+
 ## v0.0.13
 
 [compare changes](https://github.com/BayBreezy/nuxt-pdfmake/compare/v0.0.12...v0.0.13)
