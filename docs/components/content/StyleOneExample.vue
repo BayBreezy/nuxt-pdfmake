@@ -1,6 +1,8 @@
 <template>
   <main class="w-full h-[700px]">
-    <iframe :src="pdfLink" class="w-full h-full" />
+    <ClientOnly>
+      <iframe :src="pdfLink" class="w-full h-full" />
+    </ClientOnly>
   </main>
 </template>
 

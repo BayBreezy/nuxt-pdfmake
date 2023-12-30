@@ -10,13 +10,13 @@
     "lint": "eslint ."
   },
   "devDependencies": {
-    "@nuxt-themes/docus": "^1.14.7",
-    "@nuxt/devtools": "^0.8.5",
+    "@nuxt-themes/docus": "^1.15.0",
+    "@nuxt/devtools": "^1.0.6",
     "@nuxt/eslint-config": "^0.2.0",
     "@nuxthq/ui": "^2.7.0",
-    "@types/node": "^20.7.0",
-    "eslint": "^8.50.0",
-    "nuxt": "^3.7.4",
-    "nuxt-pdfmake": "^0.0.12"
+    "@types/node": "^20.10.6",
+    "eslint": "^8.56.0",
+    "nuxt": "^3.9.0",
+    "nuxt-pdfmake": "^0.0.14"
   }
 }
