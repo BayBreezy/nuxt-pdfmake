@@ -1,5 +1,5 @@
 {
   "installDependencies": true,
-  "startCommand": "npm run dev:prepare && npm run dev",
+  "startCommand": "cd ./playground && npm i && cd .. && npm run dev:prepare && npm run dev",
   "compileTrigger": "save"
 }
