@@ -1,6 +1,15 @@
 import pdfMakeMopdule from "../src/module";
+
 export default defineNuxtConfig({
-  modules: ["@nuxthq/ui", pdfMakeMopdule, "@nuxt/devtools"],
+  modules: [
+    pdfMakeMopdule,
+    "@nuxt/devtools",
+    "@nuxtjs/tailwindcss",
+    "@nuxtjs/color-mode",
+    "@vueuse/nuxt",
+    "nuxt-icon",
+  ],
+
   app: {
     head: {
       link: [
@@ -9,5 +18,32 @@ export default defineNuxtConfig({
       ],
     },
   },
+
   pdfmake: {},
+
+  tailwindcss: {
+    exposeConfig: true,
+  },
+
+  colorMode: {
+    classSuffix: "",
+  },
+
+  typescript: {
+    shim: false,
+  },
+
+  imports: {
+    imports: [
+      {
+        from: "tailwind-variants",
+        name: "tv",
+      },
+      {
+        from: "tailwind-variants",
+        name: "VariantProps",
+        type: true,
+      },
+    ],
+  },
 });
