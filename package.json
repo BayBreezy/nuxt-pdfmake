@@ -1,6 +1,6 @@
 {
   "name": "nuxt-pdfmake",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "description": "Easily generate PDFs in Nuxt.js using pdfmake",
   "repository": "https://github.com/BayBreezy/nuxt-pdfmake",
   "author": {

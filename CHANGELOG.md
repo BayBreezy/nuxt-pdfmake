@@ -1,6 +1,30 @@
 # Changelog
 
 
+## v0.0.15
+
+[compare changes](https://github.com/BayBreezy/nuxt-pdfmake/compare/v0.0.14...v0.0.15)
+
+### 🏡 Chore
+
+- Update dependencies ([03bc553](https://github.com/BayBreezy/nuxt-pdfmake/commit/03bc553))
+- Change playground ui to use UI Thing ([7a1a91b](https://github.com/BayBreezy/nuxt-pdfmake/commit/7a1a91b))
+- Add stackblitz config file ([74295c8](https://github.com/BayBreezy/nuxt-pdfmake/commit/74295c8))
+- Update stackblitz config file's start command ([22ed8a1](https://github.com/BayBreezy/nuxt-pdfmake/commit/22ed8a1))
+- Update start command in stackblitz file ([efc09c0](https://github.com/BayBreezy/nuxt-pdfmake/commit/efc09c0))
+- Remove postinstall from scripts for stackblitz ([cf20d60](https://github.com/BayBreezy/nuxt-pdfmake/commit/cf20d60))
+- Update stackblitz config ([58dabd5](https://github.com/BayBreezy/nuxt-pdfmake/commit/58dabd5))
+- Try build setup for stackblitz ([2a768b9](https://github.com/BayBreezy/nuxt-pdfmake/commit/2a768b9))
+- Update stackblitz config ([2415089](https://github.com/BayBreezy/nuxt-pdfmake/commit/2415089))
+- Remove stackblitz support ([1dfa40c](https://github.com/BayBreezy/nuxt-pdfmake/commit/1dfa40c))
+- Update docs ([9c66858](https://github.com/BayBreezy/nuxt-pdfmake/commit/9c66858))
+- **docs:** Display code block ([35fc71c](https://github.com/BayBreezy/nuxt-pdfmake/commit/35fc71c))
+- **docs:** Update codeblock components in md files ([5460698](https://github.com/BayBreezy/nuxt-pdfmake/commit/5460698))
+
+### ❤️ Contributors
+
+- BayBreezy <behon.baker@yahoo.com>
+
 ## v0.0.14
 
 [compare changes](https://github.com/BayBreezy/nuxt-pdfmake/compare/v0.0.13...v0.0.14)
