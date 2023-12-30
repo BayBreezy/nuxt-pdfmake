@@ -1,7 +1,7 @@
 export default defineNuxtConfig({
   // https://github.com/nuxt-themes/docus
   extends: "@nuxt-themes/docus",
-  modules: ["@nuxt/devtools", "@nuxthq/ui", "nuxt-pdfmake"],
+  modules: ["@nuxt/devtools", "nuxt-pdfmake"],
 
   css: ["~/assets/main.css"],
   app: {
