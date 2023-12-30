@@ -1,8 +1,8 @@
 {
   "installDependencies": true,
-  "startCommand": "cd ./playground && npm i && cd ../ && npm run dev:build && node .output/server/index.mjs",
+  "startCommand": "cd ./playground && npm i && npm run dev",
   "compileTrigger": "save",
   "env": {
-    "NODE_ENV": "production"
+    "NODE_ENV": "development"
   }
 }
