@@ -1,6 +1,20 @@
 # Changelog
 
 
+## v0.0.16
+
+[compare changes](https://github.com/BayBreezy/nuxt-pdfmake/compare/v0.0.15...v0.0.16)
+
+### 🏡 Chore
+
+- **docs:** Update pdf-make version in docs ([361a30b](https://github.com/BayBreezy/nuxt-pdfmake/commit/361a30b))
+- **docs:** Remove ui module from config ([004d39c](https://github.com/BayBreezy/nuxt-pdfmake/commit/004d39c))
+- **docs:** Add tailwindcss ([c960ed4](https://github.com/BayBreezy/nuxt-pdfmake/commit/c960ed4))
+
+### ❤️ Contributors
+
+- BayBreezy <behon.baker@yahoo.com>
+
 ## v0.0.15
 
 [compare changes](https://github.com/BayBreezy/nuxt-pdfmake/compare/v0.0.14...v0.0.15)
