@@ -16,6 +16,6 @@
     "@types/node": "^20.11.20",
     "eslint": "^8.57.0",
     "nuxt": "^3.10.3",
-    "nuxt-pdfmake": "^0.0.15"
+    "nuxt-pdfmake": "^0.0.16"
   }
 }
