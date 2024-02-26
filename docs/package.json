@@ -11,12 +11,11 @@
   },
   "devDependencies": {
     "@nuxt-themes/docus": "^1.15.0",
-    "@nuxt/devtools": "^1.0.6",
     "@nuxt/eslint-config": "^0.2.0",
-    "@nuxtjs/tailwindcss": "^6.10.3",
-    "@types/node": "^20.10.6",
-    "eslint": "^8.56.0",
-    "nuxt": "^3.9.0",
+    "@nuxtjs/tailwindcss": "^6.11.4",
+    "@types/node": "^20.11.20",
+    "eslint": "^8.57.0",
+    "nuxt": "^3.10.3",
     "nuxt-pdfmake": "^0.0.15"
   }
 }
