@@ -1,6 +1,22 @@
 # Changelog
 
 
+## v0.0.17
+
+[compare changes](https://github.com/BayBreezy/nuxt-pdfmake/compare/v0.0.16...v0.0.17)
+
+### 🏡 Chore
+
+- **docs:** Add new version of module ([2771259](https://github.com/BayBreezy/nuxt-pdfmake/commit/2771259))
+- **playground:** Update playground deps ([de573b8](https://github.com/BayBreezy/nuxt-pdfmake/commit/de573b8))
+- **docs:** Bump docs deps ([22929a6](https://github.com/BayBreezy/nuxt-pdfmake/commit/22929a6))
+- Bump version of injected script for pdfmake ([2c9dd57](https://github.com/BayBreezy/nuxt-pdfmake/commit/2c9dd57))
+
+### ❤️ Contributors
+
+- Behon Baker <behon.baker@yahoo.com>
+- BayBreezy <behon.baker@yahoo.com>
+
 ## v0.0.16
 
 [compare changes](https://github.com/BayBreezy/nuxt-pdfmake/compare/v0.0.15...v0.0.16)
