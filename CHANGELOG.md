@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v0.0.19
+
+[compare changes](https://github.com/BayBreezy/nuxt-pdfmake/compare/v0.0.18...v0.0.19)
+
+### 🏡 Chore
+
+- Change from `src` for types import to `getContents` ([f7a2de4](https://github.com/BayBreezy/nuxt-pdfmake/commit/f7a2de4))
+
+### ❤️ Contributors
+
+- Behon Baker <behon.baker@yahoo.com>
+
 ## v0.0.18
 
 [compare changes](https://github.com/BayBreezy/nuxt-pdfmake/compare/v0.0.17...v0.0.18)
