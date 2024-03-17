@@ -2,50 +2,27 @@
   <div>
     <UiNavbar sticky>
       <UiContainer class="flex h-14 items-center justify-between">
-        <p class="font-semibold">
-          Nuxt PDFMake
-        </p>
-        <UiButton
-          size="icon-sm"
-          variant="ghost"
-          @click="toggleMode"
-        >
-          <icon
-            class="size-5"
-            name="lucide:sun-medium"
-          />
+        <p class="font-semibold">Nuxt PDFMake</p>
+        <UiButton size="icon-sm" variant="ghost" @click="toggleMode">
+          <icon class="size-5" name="lucide:sun-medium" />
         </UiButton>
       </UiContainer>
     </UiNavbar>
     <UiContainer class="py-5">
       <div>
-        <p class="text-lg font-medium">
-          Open in new window
-        </p>
+        <p class="text-lg font-medium">Open in new window</p>
         <p class="mb-4 mt-1 text-muted-foreground">
           Click the button below to open the pdf table in a new window
         </p>
-        <UiButton
-          size="sm"
-          variant="outline"
-          label="Print table"
-          @click="exportData"
-        />
+        <UiButton size="sm" variant="outline" label="Print table" @click="exportData" />
         <UiDivider class="my-6" />
       </div>
       <div>
-        <p class="text-lg font-medium">
-          Column example
-        </p>
+        <p class="text-lg font-medium">Column example</p>
         <p class="mb-4 mt-1 text-muted-foreground">
           Here we use the composable to export a column example. The font was also updated
         </p>
-        <UiButton
-          size="sm"
-          variant="outline"
-          label="Print article"
-          @click="exportComposable"
-        />
+        <UiButton size="sm" variant="outline" label="Print article" @click="exportComposable" />
       </div>
     </UiContainer>
   </div>
