@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v0.0.18
+
+[compare changes](https://github.com/BayBreezy/nuxt-pdfmake/compare/v0.0.17...v0.0.18)
+
+### 🏡 Chore
+
+- **types:** Add types template ([04f6f3a](https://github.com/BayBreezy/nuxt-pdfmake/commit/04f6f3a))
+
+### ❤️ Contributors
+
+- Behon Baker <behon.baker@yahoo.com>
+
 ## v0.0.17
 
 [compare changes](https://github.com/BayBreezy/nuxt-pdfmake/compare/v0.0.16...v0.0.17)
