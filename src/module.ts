@@ -48,10 +48,12 @@ export default defineNuxtModule<ModuleOptions>({
     nuxt.options.app.head.script ||= [];
     nuxt.options.app.head.script.push(
       {
-        src: "https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js",
+        src: "https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.10/pdfmake.min.js",
+        defer: true,
       },
       {
-        src: "https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.min.js",
+        src: "https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.10/vfs_fonts.min.js",
+        defer: true,
       }
     );
     // Add plugin
