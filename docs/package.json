@@ -13,9 +13,9 @@
     "@nuxt-themes/docus": "^1.15.0",
     "@nuxt/eslint-config": "^0.2.0",
     "@nuxtjs/tailwindcss": "^6.11.4",
-    "@types/node": "^20.11.20",
+    "@types/node": "^20.11.28",
     "eslint": "^8.57.0",
-    "nuxt": "^3.10.3",
+    "nuxt": "^3.11.0",
     "nuxt-pdfmake": "^0.0.16"
   }
 }
