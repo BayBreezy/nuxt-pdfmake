@@ -2,6 +2,7 @@ import {
   defineNuxtModule,
   addPlugin,
   createResolver,
+  addTypeTemplate,
   addImportsDir,
 } from "@nuxt/kit";
 import { version, name } from "../package.json";
@@ -63,7 +64,11 @@ export default defineNuxtModule<ModuleOptions>({
     if (options.enableComposable) {
       addImportsDir(resolver.resolve("./runtime/composables"));
     }
-
+    // add type template
+    addTypeTemplate({
+      filename: "types/pdfmake-module.d.ts",
+      src: resolver.resolve("./index.d.ts"),
+    });
     // Add devtools tab
     if (!options.enableDevtools) return;
     //@ts-ignore
