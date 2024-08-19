@@ -1,5 +1,22 @@
 # Changelog
 
+## v0.0.21
+
+[compare changes](https://github.com/BayBreezy/nuxt-pdfmake/compare/v0.0.20...v0.0.21)
+
+### 📖 Documentation
+
+- Install package instead of using local link. ([03ccd42](https://github.com/BayBreezy/nuxt-pdfmake/commit/03ccd42))
+- Remove nitro override from docs ([fca915e](https://github.com/BayBreezy/nuxt-pdfmake/commit/fca915e))
+
+### 🏡 Chore
+
+- Bump deps ([566e6c6](https://github.com/BayBreezy/nuxt-pdfmake/commit/566e6c6))
+
+### ❤️ Contributors
+
+- Behon Baker ([@BayBreezy](http://github.com/BayBreezy))
+
 ## v0.0.20
 
 [compare changes](https://github.com/BayBreezy/nuxt-pdfmake/compare/v0.0.19...v0.0.20)
