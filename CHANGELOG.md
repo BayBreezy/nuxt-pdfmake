@@ -1,5 +1,21 @@
 # Changelog
 
+## v0.0.20
+
+[compare changes](https://github.com/BayBreezy/nuxt-pdfmake/compare/v0.0.19...v0.0.20)
+
+### 🏡 Chore
+
+- **release:** V0.0.19 ([70d070e](https://github.com/BayBreezy/nuxt-pdfmake/commit/70d070e))
+- Update docs deps ([51961c1](https://github.com/BayBreezy/nuxt-pdfmake/commit/51961c1))
+- Recreate docs ([bcf866a](https://github.com/BayBreezy/nuxt-pdfmake/commit/bcf866a))
+- Add prepare script ([bf7d625](https://github.com/BayBreezy/nuxt-pdfmake/commit/bf7d625))
+- Install husky ([e060199](https://github.com/BayBreezy/nuxt-pdfmake/commit/e060199))
+
+### ❤️ Contributors
+
+- Behon Baker ([@BayBreezy](http://github.com/BayBreezy))
+
 ## v0.0.19
 
 [compare changes](https://github.com/BayBreezy/nuxt-pdfmake/compare/v0.0.18...v0.0.19)
