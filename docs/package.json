@@ -74,8 +74,5 @@
     "prettier-plugin-tailwindcss": "^0.6.6",
     "tailwindcss-animate": "^1.0.7",
     "typescript": "^5.5.4"
-  },
-  "overrides": {
-    "nitropack": "2.9.6"
   }
 }
