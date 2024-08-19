@@ -1,5 +1,3 @@
-import pdfMakeModule from "../src/module.js";
-
 const url = import.meta.env.SITE_URL;
 const name = "Nuxt PDFMake";
 const description = "Easily add pdfMake to your Nuxt application";
@@ -9,7 +7,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   future: { compatibilityVersion: 4 },
   modules: [
-    pdfMakeModule,
+    "nuxt-pdfmake",
     "@nuxt/content",
     "@nuxtjs/tailwindcss",
     "@nuxtjs/color-mode",

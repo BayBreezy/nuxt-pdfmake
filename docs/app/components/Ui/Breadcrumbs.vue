@@ -39,7 +39,7 @@
     icon?: string;
     link?: string;
     disabled?: boolean;
-     
+
     click?: Function;
   }
   const props = withDefaults(

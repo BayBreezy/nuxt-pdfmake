@@ -44,7 +44,7 @@
       /**
        * The function to call when files are dropped.
        */
-       
+
       onDrop?: Function;
       /**
        * Whether or not to allow multiple files to be picked. Does not affect drag and drop.
