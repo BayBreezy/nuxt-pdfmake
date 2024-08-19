@@ -1,0 +1,28 @@
+<template>
+  <ContextMenuLabel :class="styles({ inset, class: props.class })" v-bind="forwarded">
+    <slot>{{ label }}</slot>
+  </ContextMenuLabel>
+</template>
+
+<script lang="ts" setup>
+  import { ContextMenuLabel } from "radix-vue";
+  import type { ContextMenuLabelProps } from "radix-vue";
+
+  const props = defineProps<
+    ContextMenuLabelProps & {
+      /**Custom class(es) to add to the element */
+      class?: any;
+      /** Wether an indentation should be added to the item or not */
+      inset?: boolean;
+      /** The label for the item */
+      label?: string;
+    }
+  >();
+  const forwarded = reactiveOmit(props, "class", "inset", "label");
+  const styles = tv({
+    base: "text-foreground inline-block w-full px-2 py-1.5 text-sm font-semibold",
+    variants: {
+      inset: { true: "pl-8" },
+    },
+  });
+</script>

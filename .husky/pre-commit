@@ -1,0 +1,4 @@
+npm run format && npm run lint
+# For testing purposes, you can add the following line to the end of the file:
+# exit 1
+

@@ -9,19 +9,19 @@
     "postinstall": "nuxi prepare"
   },
   "devDependencies": {
-    "@ianvs/prettier-plugin-sort-imports": "^4.2.1",
-    "@nuxtjs/color-mode": "^3.3.2",
-    "@nuxtjs/tailwindcss": "^6.11.4",
-    "@vueuse/nuxt": "^10.9.0",
-    "nuxt": "3.11.0",
-    "nuxt-icon": "^0.6.9",
-    "prettier": "^3.2.5",
-    "prettier-plugin-tailwindcss": "^0.5.12",
+    "@ianvs/prettier-plugin-sort-imports": "^4.3.1",
+    "@nuxtjs/color-mode": "^3.4.4",
+    "@nuxtjs/tailwindcss": "^6.12.1",
+    "@vueuse/nuxt": "^11.0.0",
+    "nuxt": "3.12.4",
+    "nuxt-icon": "^0.6.10",
+    "prettier": "^3.3.3",
+    "prettier-plugin-tailwindcss": "^0.6.6",
     "tailwindcss-animate": "^1.0.7",
-    "typescript": "^5.4.2"
+    "typescript": "^5.5.4"
   },
   "dependencies": {
-    "radix-vue": "^1.5.2",
+    "radix-vue": "^1.9.4",
     "tailwind-variants": "^0.2.1"
   }
 }

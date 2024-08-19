@@ -1,52 +1,57 @@
-# Nuxt PDFMake
+# UI Doc Starter
 
-[![npm version][npm-version-src]][npm-version-href]
-[![npm downloads][npm-downloads-src]][npm-downloads-href]
-[![License][license-src]][license-href]
-[![Nuxt][nuxt-src]][nuxt-href]
+We all know how annoying it is to setup a new documentation project. That is why this was created to help you get started quickly with [Nuxt Content](https://content.nuxt.com/) & [UI Thing](https://ui-thing.behonbaker.com/getting-started/introduction). UI Thing is just a set of Nuxt components that were styled to look like the ones from [shadcn/ui](https://ui.shadcn.com/).
 
-Easily add <a target="_blank" href="http://pdfmake.org/#/">pdfMake</a> to your Nuxt 3 application.
+## Modules
 
-- [✨ &nbsp;Release Notes](/CHANGELOG.md)
-  <!-- - [🏀 Online playground](https://stackblitz.com/github/your-org/nuxt-pdfmake?file=playground%2Fapp.vue) -->
-  <!-- - [📖 &nbsp;Documentation](https://example.com) -->
+There are several modules at play in this project:
 
-## Documentation
+- [Nuxt Content](https://content.nuxt.com/)
+- [Nuxt TailwindCSS](https://tailwindcss.nuxtjs.org/)
+- [Nuxt Color Mode](https://color-mode.nuxtjs.org/)
+- [Nuxt Icons](https://github.com/nuxt/icon)
+- [Nuxt Image](https://image.nuxt.com/)
+- [V-Wave](https://github.com/justintaddei/v-wave?tab=readme-ov-file#nuxt-)
+- [Nuxt ESLint](https://eslint.nuxt.com/packages/module)
+- [Nuxt PWA](https://vite-pwa-org.netlify.app/frameworks/nuxt.html#nuxt-3)
 
-See the documentation here: [Nuxt PDFMake](https://nuxt-pdfmake.behonbaker.com/)
+## Setup
 
-## Quick Setup
-
-1. Add `nuxt-pdfmake` dependency to your project
+Clone the repo and install the dependencies:
 
 ```bash
-# Using pnpm
-pnpm add -D nuxt-pdfmake
-
-# Using yarn
-yarn add --dev nuxt-pdfmake
-
-# Using npm
-npm install --save-dev nuxt-pdfmake
+npx --yes giget@latest gh:BayBreezy/ui-doc-starter docs --install
 ```
 
-2. Add `nuxt-pdfmake` to the `modules` section of `nuxt.config.ts`
+## Deployment
 
-```js
-export default defineNuxtConfig({
-  modules: ["nuxt-pdfmake"],
-});
+An instance is deployed on Netlify at https://ui-doc-starter.behonbaker.com
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/64f5f619-4c60-4d32-bd92-ebed3f118dad/deploy-status)](https://app.netlify.com/sites/sprightly-rolypoly-6aa2cc/deploys)
+
+## Development Server
+
+Start the development server
+
+```bash
+# npm
+npm run dev
 ```
 
-That's it! You can now use Nuxt PDFMake in your Nuxt app ✨
+## Production
 
-<!-- Badges -->
+Build the application for production:
 
-[npm-version-src]: https://img.shields.io/npm/v/nuxt-pdfmake/latest.svg?style=flat&colorA=18181B&colorB=28CF8D
-[npm-version-href]: https://npmjs.com/package/nuxt-pdfmake
-[npm-downloads-src]: https://img.shields.io/npm/dm/nuxt-pdfmake.svg?style=flat&colorA=18181B&colorB=28CF8D
-[npm-downloads-href]: https://npmjs.com/package/nuxt-pdfmake
-[license-src]: https://img.shields.io/npm/l/nuxt-pdfmake.svg?style=flat&colorA=18181B&colorB=28CF8D
-[license-href]: https://npmjs.com/package/nuxt-pdfmake
-[nuxt-src]: https://img.shields.io/badge/Nuxt-18181B?logo=nuxt.js
-[nuxt-href]: https://nuxt.com
+```bash
+# npm
+npm run build
+```
+
+Locally preview production build:
+
+```bash
+# npm
+npm run preview
+```
+
+Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.

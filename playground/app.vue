@@ -14,7 +14,7 @@
         <p class="mb-4 mt-1 text-muted-foreground">
           Click the button below to open the pdf table in a new window
         </p>
-        <UiButton size="sm" variant="outline" label="Print table" @click="exportData" />
+        <UiButton size="sm" variant="outline" text="Print table" @click="exportData" />
         <UiDivider class="my-6" />
       </div>
       <div>
@@ -22,7 +22,7 @@
         <p class="mb-4 mt-1 text-muted-foreground">
           Here we use the composable to export a column example. The font was also updated
         </p>
-        <UiButton size="sm" variant="outline" label="Print article" @click="exportComposable" />
+        <UiButton size="sm" variant="outline" text="Print article" @click="exportComposable" />
       </div>
     </UiContainer>
   </div>

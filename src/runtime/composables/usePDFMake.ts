@@ -1,3 +1,5 @@
+import { useNuxtApp } from "#imports";
+
 /**
  * A composable that returns the pdfMake instance.
  * @returns The pdfMake instance.
@@ -12,5 +14,6 @@
  * @see https://pdfmake.github.io/docs/0.1/getting-started/client-side/methods/
  */
 export const usePDFMake = () => {
-  return useNuxtApp().$pdfMake;
+  const { $pdfMake } = useNuxtApp();
+  return $pdfMake;
 };

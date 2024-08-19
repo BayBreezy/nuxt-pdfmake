@@ -2,20 +2,20 @@
   "name": "nuxt-pdfmake",
   "version": "0.0.19",
   "description": "Easily generate PDFs in Nuxt.js using pdfmake",
-  "repository": "https://github.com/BayBreezy/nuxt-pdfmake",
-  "author": {
-    "name": "Behon Baker",
-    "email": "behon.baker@yahoo.com",
-    "url": "https://behonbaker.com/"
-  },
-  "homepage": "https://nuxt-pdfmake.behonbaker.com",
   "keywords": [
     "pdfmake",
     "nuxt",
     "nuxt-module",
     "nuxt-pdfmake"
   ],
+  "homepage": "https://nuxt-pdfmake.behonbaker.com",
+  "repository": "https://github.com/BayBreezy/nuxt-pdfmake",
   "license": "MIT",
+  "author": {
+    "name": "Behon Baker",
+    "email": "behon.baker@yahoo.com",
+    "url": "https://behonbaker.com/"
+  },
   "type": "module",
   "exports": {
     ".": {
@@ -30,32 +30,40 @@
     "dist"
   ],
   "scripts": {
-    "prepack": "nuxt-module-build",
+    "afterClone": "npm i && cd playground && npm i && cd ../docs && npm i && cd .. && npm run dev:prepare",
     "dev": "nuxi dev playground",
     "dev:build": "nuxi build playground",
     "dev:prepare": "nuxt-module-build --stub && nuxi prepare playground",
-    "start:dev": "yarn prepack && yarn dev:build && node playground/.output/server/index.mjs",
-    "release": "npm run lint && npm run test && npm run prepack && changelogen --release && npm publish && git push --follow-tags",
+    "docs:build": "nuxi build docs",
+    "format": "prettier --write .",
     "lint": "eslint . --fix",
+    "netlify": "npm run afterClone && npm run prepack && npm run dev:build && npm run docs:build",
+    "prepack": "nuxt-module-build",
+    "release": "npm run lint && npm run test && npm run prepack && changelogen --release && npm publish && git push --follow-tags",
+    "start:dev": "yarn prepack && yarn dev:build && node playground/.output/server/index.mjs",
     "test": "vitest run",
     "test:watch": "vitest watch"
   },
   "dependencies": {
-    "@nuxt/kit": "^3.11.0",
-    "pdfmake": "^0.2.10"
+    "@nuxt/kit": "^3.12.4",
+    "@types/pdfmake": "^0.2.9",
+    "pdfmake": "^0.2.12"
   },
   "devDependencies": {
-    "@nuxt/devtools": "^1.0.8",
-    "@nuxt/eslint-config": "^0.2.0",
-    "@nuxt/module-builder": "^0.5.5",
-    "@nuxt/schema": "^3.11.0",
-    "@nuxt/test-utils": "^3.12.0",
-    "@types/node": "^20.11.28",
-    "@types/pdfmake": "^0.2.9",
+    "@ianvs/prettier-plugin-sort-imports": "^4.3.1",
+    "@nuxt/devtools": "^1.3.9",
+    "@nuxt/eslint-config": "^0.5.0",
+    "@nuxt/module-builder": "^0.8.3",
+    "@nuxt/schema": "^3.12.4",
+    "@nuxt/test-utils": "^3.14.1",
+    "@types/node": "^22.4.0",
     "changelogen": "^0.5.5",
-    "eslint": "^8.57.0",
-    "nuxt": "^3.11.0",
-    "postcss-custom-properties": "^13.3.6",
-    "vitest": "^1.4.0"
+    "eslint": "^9.9.0",
+    "nuxt": "^3.12.4",
+    "prettier-plugin-tailwindcss": "^0.6.6",
+    "vitest": "^2.0.5"
+  },
+  "overrides": {
+    "nitropack": "2.9.6"
   }
 }

@@ -16,8 +16,7 @@
 export const useFontPresets = () => {
   return {
     Roboto: {
-      normal:
-        "https://cdn.jsdelivr.net/npm/typeface-roboto@1.1.13/files/roboto-latin-400.woff",
+      normal: "https://cdn.jsdelivr.net/npm/typeface-roboto@1.1.13/files/roboto-latin-400.woff",
       bold: "https://cdn.jsdelivr.net/npm/typeface-roboto@1.1.13/files/roboto-latin-700.woff",
       italics:
         "https://cdn.jsdelivr.net/npm/typeface-roboto@1.1.13/files/roboto-latin-400italic.woff",
@@ -25,17 +24,14 @@ export const useFontPresets = () => {
         "https://cdn.jsdelivr.net/npm/typeface-roboto@1.1.13/files/roboto-latin-700italic.woff",
     },
     Inter: {
-      normal:
-        "https://cdn.jsdelivr.net/npm/typeface-inter@3.18.1/Inter Web/Inter-Regular.woff",
+      normal: "https://cdn.jsdelivr.net/npm/typeface-inter@3.18.1/Inter Web/Inter-Regular.woff",
       bold: "https://cdn.jsdelivr.net/npm/typeface-inter@3.18.1/Inter Web/Inter-Bold.woff",
-      italics:
-        "https://cdn.jsdelivr.net/npm/typeface-inter@3.18.1/Inter Web/Inter-Italic.woff",
+      italics: "https://cdn.jsdelivr.net/npm/typeface-inter@3.18.1/Inter Web/Inter-Italic.woff",
       bolditalics:
         "https://cdn.jsdelivr.net/npm/typeface-inter@3.18.1/Inter Web/Inter-BoldItalic.woff",
     },
     Poppins: {
-      normal:
-        "https://cdn.jsdelivr.net/npm/typeface-poppins@1.1.13/files/poppins-latin-400.woff",
+      normal: "https://cdn.jsdelivr.net/npm/typeface-poppins@1.1.13/files/poppins-latin-400.woff",
       bold: "https://cdn.jsdelivr.net/npm/typeface-poppins@1.1.13/files/poppins-latin-700.woff",
       italics:
         "https://cdn.jsdelivr.net/npm/typeface-poppins@1.1.13/files/poppins-latin-400italic.woff",
@@ -43,11 +39,9 @@ export const useFontPresets = () => {
         "https://cdn.jsdelivr.net/npm/typeface-poppins@1.1.13/files/poppins-latin-700italic.woff",
     },
     Lora: {
-      normal:
-        "https://cdn.jsdelivr.net/npm/typeface-lora@1.1.13/files/lora-latin-400.woff",
+      normal: "https://cdn.jsdelivr.net/npm/typeface-lora@1.1.13/files/lora-latin-400.woff",
       bold: "https://cdn.jsdelivr.net/npm/typeface-lora@1.1.13/files/lora-latin-700.woff",
-      italics:
-        "https://cdn.jsdelivr.net/npm/typeface-lora@1.1.13/files/lora-latin-400italic.woff",
+      italics: "https://cdn.jsdelivr.net/npm/typeface-lora@1.1.13/files/lora-latin-400italic.woff",
       bolditalics:
         "https://cdn.jsdelivr.net/npm/typeface-lora@1.1.13/files/lora-latin-700italic.woff",
     },

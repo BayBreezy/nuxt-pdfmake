@@ -1,0 +1,74 @@
+<template>
+  <div class="h-[700px] w-full">
+    <iframe v-if="pdfLink" :src="pdfLink" class="h-full w-full" />
+  </div>
+</template>
+
+<script setup lang="ts">
+  const pdfLink = ref();
+
+  const getBase64ImageFromURL = (url: string) => {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.setAttribute("crossOrigin", "anonymous");
+
+      img.onload = () => {
+        const canvas = document.createElement("canvas");
+        canvas.width = img.width;
+        canvas.height = img.height;
+
+        const ctx = canvas.getContext("2d");
+        ctx?.drawImage(img, 0, 0);
+
+        const dataURL = canvas.toDataURL("image/jpeg");
+
+        resolve(dataURL);
+      };
+
+      img.onerror = (error) => {
+        reject(error);
+      };
+
+      img.src = url;
+    });
+  };
+
+  const loadPdf = async () => {
+    const { $pdfMake } = useNuxtApp();
+    const img = await getBase64ImageFromURL(
+      "https://images.pexels.com/photos/1049298/pexels-photo-1049298.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&dpr=2"
+    );
+
+    $pdfMake
+      .createPdf({
+        content: [
+          {
+            text: "Load images with a function like the on above",
+            style: { fontSize: 16 },
+            margin: [0, 0, 0, 20],
+          },
+          {
+            image: img as any,
+            width: 350,
+          },
+          {
+            text: "To load from an external URL, just add the URL to the images dictionary & use the name",
+            margin: [0, 20, 0, 20],
+          },
+          {
+            image: "snow",
+            width: 250,
+          },
+        ],
+        images: {
+          snow: "https://images.unsplash.com/photo-1542356670-bdf906b3ac87?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=700&q=50",
+        },
+      })
+      .getDataUrl((dataUrl: any) => {
+        pdfLink.value = dataUrl;
+      });
+  };
+  onMounted(async () => {
+    await loadPdf();
+  });
+</script>
