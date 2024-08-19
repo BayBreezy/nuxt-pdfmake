@@ -39,6 +39,7 @@
     "lint": "eslint . --fix",
     "netlify": "npm run afterClone && npm run prepack && npm run dev:build && npm run docs:build",
     "prepack": "nuxt-module-build",
+    "prepare": "husky",
     "release": "npm run lint && npm run test && npm run prepack && changelogen --release && npm publish && git push --follow-tags",
     "start:dev": "yarn prepack && yarn dev:build && node playground/.output/server/index.mjs",
     "test": "vitest run",
