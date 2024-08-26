@@ -1,5 +1,25 @@
 # Changelog
 
+## v0.0.29
+
+[compare changes](https://github.com/BayBreezy/nuxt-pdfmake/compare/v0.0.28...v0.0.29)
+
+### 📖 Documentation
+
+- Update package version and fix basic example table ([d145c32](https://github.com/BayBreezy/nuxt-pdfmake/commit/d145c32))
+
+### 🏡 Chore
+
+- **release:** V0.0.28 ([60d1a8c](https://github.com/BayBreezy/nuxt-pdfmake/commit/60d1a8c))
+
+### 🎨 Styles
+
+- Lint examples ([3982159](https://github.com/BayBreezy/nuxt-pdfmake/commit/3982159))
+
+### ❤️ Contributors
+
+- Behon Baker ([@BayBreezy](http://github.com/BayBreezy))
+
 ## v0.0.28
 
 [compare changes](https://github.com/BayBreezy/nuxt-pdfmake/compare/v0.0.27...v0.0.28)
