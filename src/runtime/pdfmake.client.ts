@@ -1,10 +1,9 @@
 import { defineNuxtPlugin } from "#app";
-import pdfMake from "pdfmake";
 
 export default defineNuxtPlugin(async () => {
   return {
     provide: {
-      pdfMake,
+      pdfMake: window.pdfMake,
     },
   };
 });
