@@ -46,7 +46,7 @@
     "jszip": "^3.10.1",
     "nitropack": "2.9.5",
     "nuxt": "^3.13.0",
-    "nuxt-pdfmake": "^0.0.21",
+    "nuxt-pdfmake": "^0.0.28",
     "radix-vue": "^1.9.5",
     "tailwind-variants": "^0.2.1",
     "v-wave": "^2.0.0",
