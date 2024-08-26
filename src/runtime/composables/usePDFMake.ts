@@ -14,6 +14,5 @@ import { useNuxtApp } from "#imports";
  * @see https://pdfmake.github.io/docs/0.1/getting-started/client-side/methods/
  */
 export const usePDFMake = () => {
-  const { $pdfMake } = useNuxtApp();
-  return $pdfMake;
+  return useNuxtApp().$pdfMake;
 };
