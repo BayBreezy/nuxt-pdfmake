@@ -1,5 +1,5 @@
 import { defineNuxtPlugin } from "#app";
-import pdfMake from "pdfmake/build/pdfmake";
+import pdfMake from "pdfmake";
 
 export default defineNuxtPlugin(async () => {
   return {
