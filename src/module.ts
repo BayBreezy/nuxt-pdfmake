@@ -71,11 +71,6 @@ export default defineNuxtModule<ModuleOptions>({
     if (options.enableComposable) {
       addImportsDir(resolver.resolve("./runtime/composables"));
     }
-    // add type template
-    addTypeTemplate({
-      filename: "types/pdfmake-module.d.ts",
-      src: resolver.resolve("./runtime/index.d.ts"),
-    });
     // Add devtools tab
     if (!options.enableDevtools) return;
     nuxt.hook("devtools:customTabs", (iframeTabs) => {
