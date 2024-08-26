@@ -1,5 +1,18 @@
 # Changelog
 
+## v0.0.23
+
+[compare changes](https://github.com/BayBreezy/nuxt-pdfmake/compare/v0.0.22...v0.0.23)
+
+### 🏡 Chore
+
+- Remove pdfmake from list of transpiled deps ([cf42f74](https://github.com/BayBreezy/nuxt-pdfmake/commit/cf42f74))
+- Change how composable returns instance ([75fbdea](https://github.com/BayBreezy/nuxt-pdfmake/commit/75fbdea))
+
+### ❤️ Contributors
+
+- Behon Baker ([@BayBreezy](http://github.com/BayBreezy))
+
 ## v0.0.22
 
 [compare changes](https://github.com/BayBreezy/nuxt-pdfmake/compare/v0.0.21...v0.0.22)
