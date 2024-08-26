@@ -1,5 +1,17 @@
 # Changelog
 
+## v0.0.25
+
+[compare changes](https://github.com/BayBreezy/nuxt-pdfmake/compare/v0.0.24...v0.0.25)
+
+### 🏡 Chore
+
+- Remove augmented types ([3b925a0](https://github.com/BayBreezy/nuxt-pdfmake/commit/3b925a0))
+
+### ❤️ Contributors
+
+- Behon Baker ([@BayBreezy](http://github.com/BayBreezy))
+
 ## v0.0.24
 
 [compare changes](https://github.com/BayBreezy/nuxt-pdfmake/compare/v0.0.22...v0.0.24)
