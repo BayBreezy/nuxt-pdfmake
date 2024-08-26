@@ -50,7 +50,7 @@ export default defineNuxtModule<ModuleOptions>({
     }
     const resolver = createResolver(import.meta.url);
     const runtimeDir = resolver.resolve("./runtime");
-    nuxt.options.build.transpile.push(runtimeDir, "pdfmake");
+    nuxt.options.build.transpile.push(runtimeDir);
     nuxt.options.alias["#pdfmake"] = runtimeDir;
 
     nuxt.options.app.head.script ||= [];
