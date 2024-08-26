@@ -31,7 +31,7 @@
                   ...Array.from({ length: 20 }, (v, k) => [
                     k + 1,
                     faker.person.fullName(),
-                    faker.helpers.fromRegExp(/[0-9]{3}-[0-9]{3}-[0-9]{4}/),
+                    faker.helpers.fromRegExp(/\d{3}-\d{3}-\d{4}/),
                     faker.internet.email()?.toLowerCase(),
                   ]),
                 ],
