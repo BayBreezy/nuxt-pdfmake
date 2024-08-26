@@ -1,5 +1,17 @@
 # Changelog
 
+## v0.0.28
+
+[compare changes](https://github.com/BayBreezy/nuxt-pdfmake/compare/v0.0.27...v0.0.28)
+
+### 🏡 Chore
+
+- Use window's pdfmake instead ([912c876](https://github.com/BayBreezy/nuxt-pdfmake/commit/912c876))
+
+### ❤️ Contributors
+
+- Behon Baker ([@BayBreezy](http://github.com/BayBreezy))
+
 ## v0.0.27
 
 [compare changes](https://github.com/BayBreezy/nuxt-pdfmake/compare/v0.0.26...v0.0.27)
