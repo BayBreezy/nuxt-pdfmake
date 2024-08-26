@@ -1,5 +1,17 @@
 # Changelog
 
+## v0.0.27
+
+[compare changes](https://github.com/BayBreezy/nuxt-pdfmake/compare/v0.0.26...v0.0.27)
+
+### 🏡 Chore
+
+- Update import statement for pdfmake ([1277e63](https://github.com/BayBreezy/nuxt-pdfmake/commit/1277e63))
+
+### ❤️ Contributors
+
+- Behon Baker ([@BayBreezy](http://github.com/BayBreezy))
+
 ## v0.0.26
 
 [compare changes](https://github.com/BayBreezy/nuxt-pdfmake/compare/v0.0.25...v0.0.26)
