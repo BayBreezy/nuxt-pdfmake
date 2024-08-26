@@ -1,5 +1,17 @@
 # Changelog
 
+## v0.0.26
+
+[compare changes](https://github.com/BayBreezy/nuxt-pdfmake/compare/v0.0.25...v0.0.26)
+
+### 🏡 Chore
+
+- Change how pdfmake is imported in the plugin ([8e7ba58](https://github.com/BayBreezy/nuxt-pdfmake/commit/8e7ba58))
+
+### ❤️ Contributors
+
+- Behon Baker ([@BayBreezy](http://github.com/BayBreezy))
+
 ## v0.0.25
 
 [compare changes](https://github.com/BayBreezy/nuxt-pdfmake/compare/v0.0.24...v0.0.25)
