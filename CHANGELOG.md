@@ -1,5 +1,18 @@
 # Changelog
 
+## v0.0.31
+
+[compare changes](https://github.com/BayBreezy/nuxt-pdfmake/compare/v0.0.30...v0.0.31)
+
+### 🏡 Chore
+
+- Bump deps ([002bf77](https://github.com/BayBreezy/nuxt-pdfmake/commit/002bf77))
+- Add license to root of project. closes Add Licence to root of repository #12 ([#12](https://github.com/BayBreezy/nuxt-pdfmake/issues/12))
+
+### ❤️ Contributors
+
+- Behon Baker ([@BayBreezy](http://github.com/BayBreezy))
+
 ## v0.0.30
 
 [compare changes](https://github.com/BayBreezy/nuxt-pdfmake/compare/v0.0.29...v0.0.30)
