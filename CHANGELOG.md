@@ -1,5 +1,18 @@
 # Changelog
 
+## v0.0.36
+
+[compare changes](https://github.com/BayBreezy/nuxt-pdfmake/compare/v0.0.35...v0.0.36)
+
+### 🏡 Chore
+
+- **release:** V0.0.35 ([ca43efd](https://github.com/BayBreezy/nuxt-pdfmake/commit/ca43efd))
+- Bump deps ([f6f8124](https://github.com/BayBreezy/nuxt-pdfmake/commit/f6f8124))
+
+### ❤️ Contributors
+
+- Behon Baker ([@BayBreezy](http://github.com/BayBreezy))
+
 ## v0.0.35
 
 [compare changes](https://github.com/BayBreezy/nuxt-pdfmake/compare/v0.0.34...v0.0.35)
