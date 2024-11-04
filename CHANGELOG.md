@@ -1,5 +1,22 @@
 # Changelog
 
+## v0.0.37
+
+[compare changes](https://github.com/BayBreezy/nuxt-pdfmake/compare/v0.0.36...v0.0.37)
+
+### 🏡 Chore
+
+- **release:** V0.0.36 ([c6713df](https://github.com/BayBreezy/nuxt-pdfmake/commit/c6713df))
+- Bump deps ([f547205](https://github.com/BayBreezy/nuxt-pdfmake/commit/f547205))
+- **deps-dev:** Bump vitest from 2.1.3 to 2.1.4 ([21cb058](https://github.com/BayBreezy/nuxt-pdfmake/commit/21cb058))
+- **deps-dev:** Bump @nuxt/eslint-config from 0.6.0 to 0.6.1 ([196eb48](https://github.com/BayBreezy/nuxt-pdfmake/commit/196eb48))
+- Bump deps ([d13b7d3](https://github.com/BayBreezy/nuxt-pdfmake/commit/d13b7d3))
+- Update import in navbar component & format codebase ([52c9dae](https://github.com/BayBreezy/nuxt-pdfmake/commit/52c9dae))
+
+### ❤️ Contributors
+
+- Behon Baker ([@BayBreezy](http://github.com/BayBreezy))
+
 ## v0.0.36
 
 [compare changes](https://github.com/BayBreezy/nuxt-pdfmake/compare/v0.0.35...v0.0.36)
