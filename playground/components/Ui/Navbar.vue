@@ -5,6 +5,7 @@
 </template>
 
 <script lang="ts" setup>
+  import { reactiveOmit } from "@vueuse/core";
   import { Primitive } from "radix-vue";
   import type { PrimitiveProps } from "radix-vue";
 
