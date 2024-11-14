@@ -9,7 +9,11 @@ updates:
     directory: "/" # Location of package manifests
     schedule:
       interval: "weekly"
+      day: "sunday"
+      time: "06:00"
   - package-ecosystem: "npm" # See documentation for possible values
     directory: "/docs2" # Location of package manifests
     schedule:
       interval: "weekly"
+      day: "sunday"
+      time: "06:00"
