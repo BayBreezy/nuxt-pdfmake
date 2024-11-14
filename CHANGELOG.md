@@ -1,5 +1,18 @@
 # Changelog
 
+## v0.0.38
+
+[compare changes](https://github.com/BayBreezy/nuxt-pdfmake/compare/v0.0.37...v0.0.38)
+
+### 🏡 Chore
+
+- Bump deps ([0408482](https://github.com/BayBreezy/nuxt-pdfmake/commit/0408482))
+- Update dependabot config ([0b5547e](https://github.com/BayBreezy/nuxt-pdfmake/commit/0b5547e))
+
+### ❤️ Contributors
+
+- Behon Baker ([@BayBreezy](http://github.com/BayBreezy))
+
 ## v0.0.37
 
 [compare changes](https://github.com/BayBreezy/nuxt-pdfmake/compare/v0.0.36...v0.0.37)
