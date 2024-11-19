@@ -51,8 +51,8 @@
     "v-wave": "^3.0.2",
     "vaul-vue": "^0.2.0",
     "vue": "latest",
-    "vue-router": "latest",
     "vue-currency-input": "^3.1.0",
+    "vue-router": "latest",
     "vue-sonner": "^1.2.5",
     "vue-use-active-scroll": "^1.1.3"
   },
