@@ -10,7 +10,7 @@
     "postinstall": "nuxi prepare"
   },
   "dependencies": {
-    "radix-vue": "^1.9.9",
+    "radix-vue": "^1.9.10",
     "tailwind-variants": "^0.3.0"
   },
   "devDependencies": {
