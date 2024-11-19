@@ -1,5 +1,19 @@
 # Changelog
 
+## v0.0.39
+
+[compare changes](https://github.com/BayBreezy/nuxt-pdfmake/compare/v0.0.38...v0.0.39)
+
+### 🏡 Chore
+
+- Bump deps ([fcf4a19](https://github.com/BayBreezy/nuxt-pdfmake/commit/fcf4a19))
+- **deps-dev:** Bump @nuxt/eslint-config from 0.6.1 to 0.7.0 ([10eb4b1](https://github.com/BayBreezy/nuxt-pdfmake/commit/10eb4b1))
+- Bump deps ([9113dcf](https://github.com/BayBreezy/nuxt-pdfmake/commit/9113dcf))
+
+### ❤️ Contributors
+
+- Behon Baker ([@BayBreezy](http://github.com/BayBreezy))
+
 ## v0.0.38
 
 [compare changes](https://github.com/BayBreezy/nuxt-pdfmake/compare/v0.0.37...v0.0.38)
