@@ -31,6 +31,7 @@
                   ...Array.from({ length: 20 }, (v, k) => [
                     k + 1,
                     faker.person.fullName(),
+                    // eslint-disable-next-line
                     faker.helpers.fromRegExp(/[0-9]{3}-[0-9]{3}-[0-9]{4}/),
                     faker.internet.email()?.toLowerCase(),
                   ]),
@@ -44,7 +45,7 @@
         },
         {
           custom: {
-            fillColor: function (rowIndex) {
+            fillColor: function (rowIndex: number) {
               return rowIndex % 2 !== 0 ? _colors.slate[50] : null;
             },
             hLineColor: _colors.slate[200],
@@ -60,7 +61,7 @@
           },
         }
       )
-      .getDataUrl((dataUrl) => {
+      .getDataUrl((dataUrl: any) => {
         pdfLink.value = dataUrl;
       });
   };
