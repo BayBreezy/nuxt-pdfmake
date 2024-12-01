@@ -1,5 +1,29 @@
 # Changelog
 
+## v0.0.42
+
+[compare changes](https://github.com/BayBreezy/nuxt-pdfmake/compare/v0.0.39...v0.0.42)
+
+### 📖 Documentation
+
+- Fix error in hero section ([26798b5](https://github.com/BayBreezy/nuxt-pdfmake/commit/26798b5))
+- Fix broken docs ([d4906e6](https://github.com/BayBreezy/nuxt-pdfmake/commit/d4906e6))
+
+### 🏡 Chore
+
+- Bump deps ([2527447](https://github.com/BayBreezy/nuxt-pdfmake/commit/2527447))
+- Update example of basic table ([3f2d91a](https://github.com/BayBreezy/nuxt-pdfmake/commit/3f2d91a))
+- Bump deps ([81c68f4](https://github.com/BayBreezy/nuxt-pdfmake/commit/81c68f4))
+
+### 🤖 CI
+
+- Tried release & some weird stuff happened ([0f514f9](https://github.com/BayBreezy/nuxt-pdfmake/commit/0f514f9))
+- Release ([3d3953d](https://github.com/BayBreezy/nuxt-pdfmake/commit/3d3953d))
+
+### ❤️ Contributors
+
+- Behon Baker ([@BayBreezy](http://github.com/BayBreezy))
+
 ## v0.0.41
 
 [compare changes](https://github.com/BayBreezy/nuxt-pdfmake/compare/v0.0.39...v0.0.41)

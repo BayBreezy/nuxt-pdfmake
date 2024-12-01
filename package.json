@@ -1,6 +1,6 @@
 {
   "name": "nuxt-pdfmake",
-  "version": "0.0.41",
+  "version": "0.0.42",
   "description": "Easily generate PDFs in Nuxt.js using pdfmake",
   "keywords": [
     "pdfmake",
@@ -9,7 +9,10 @@
     "nuxt-pdfmake"
   ],
   "homepage": "https://nuxt-pdfmake.behonbaker.com",
-  "repository": "https://github.com/BayBreezy/nuxt-pdfmake",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BayBreezy/nuxt-pdfmake.git"
+  },
   "license": "MIT",
   "author": {
     "name": "Behon Baker",
