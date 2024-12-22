@@ -30,7 +30,7 @@
     "@morev/vue-transitions": "^3.0.5",
     "@nuxt/content": "^2.13.4",
     "@nuxt/eslint": "^0.7.3",
-    "@nuxt/icon": "^1.10.1",
+    "@nuxt/icon": "^1.10.3",
     "@nuxt/image": "^1.8.1",
     "@nuxtjs/seo": "^2.0.2",
     "@tanstack/vue-table": "^8.20.5",
