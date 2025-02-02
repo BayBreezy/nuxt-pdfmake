@@ -45,7 +45,7 @@
     "dotenv": "^16.4.7",
     "jszip": "^3.10.1",
     "nuxt": "^3.15.4",
-    "nuxt-pdfmake": "^0.0.45",
+    "nuxt-pdfmake": "^0.0.46",
     "radix-vue": "^1.9.13",
     "tailwind-variants": "^0.3.1",
     "v-wave": "^3.0.2",
