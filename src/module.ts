@@ -1,11 +1,4 @@
-import {
-  addImports,
-  addImportsDir,
-  addPlugin,
-  createResolver,
-  defineNuxtModule,
-  logger,
-} from "@nuxt/kit";
+import { addImports, addPlugin, createResolver, defineNuxtModule, logger } from "@nuxt/kit";
 
 import { name, version } from "../package.json";
 
