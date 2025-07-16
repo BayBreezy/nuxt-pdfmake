@@ -32,7 +32,7 @@
         :src="heroData?.image.src"
         :alt="heroData?.image.alt"
         class="mx-auto mt-12 size-full h-full max-w-[900px] rounded-lg object-cover shadow lg:max-h-[500px]"
-      />
+      >
     </UiContainer>
   </div>
 </template>
