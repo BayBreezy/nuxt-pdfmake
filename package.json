@@ -42,7 +42,7 @@
     "netlify": "npm run afterClone && npm run prepack && npm run dev:build && npm run docs:build",
     "prepack": "nuxt-module-build build",
     "prepare": "husky",
-    "release": "npm run lint && && npm run format && npm run test && npm run prepack && changelogen --release && npm publish && git push --follow-tags",
+    "release": "npm run lint && npm run format && npm run test && npm run prepack && changelogen --release && npm publish && git push --follow-tags",
     "rm:lock": "rm -rf package-lock.json playground/package-lock.json docs/package-lock.json",
     "start:dev": "yarn prepack && yarn dev:build && node playground/.output/server/index.mjs",
     "test": "vitest run",
