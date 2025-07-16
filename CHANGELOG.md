@@ -10,7 +10,7 @@
 
 ### 💅 Refactors
 
-- **playground:** Update folder structure to work  with upcoming nuxt 4 update ([81d0b2d](https://github.com/BayBreezy/nuxt-pdfmake/commit/81d0b2d))
+- **playground:** Update folder structure to work with upcoming nuxt 4 update ([81d0b2d](https://github.com/BayBreezy/nuxt-pdfmake/commit/81d0b2d))
 
 ### 🏡 Chore
 
