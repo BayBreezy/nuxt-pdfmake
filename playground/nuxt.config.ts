@@ -1,6 +1,7 @@
 import pdfMakeMopdule from "../src/module";
 
 export default defineNuxtConfig({
+  future: { compatibilityVersion: 4 },
   modules: [
     pdfMakeMopdule,
     "@nuxt/devtools",
