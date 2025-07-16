@@ -1,7 +1,7 @@
 import {
+  addImports,
   addImportsDir,
   addPlugin,
-  addTypeTemplate,
   createResolver,
   defineNuxtModule,
   logger,
@@ -26,6 +26,11 @@ export interface ModuleOptions {
    * @default true
    */
   enableDevtools?: boolean;
+  /**
+   * Whether to include the default font presets in the module
+   * @default true
+   */
+  includeFontPresets?: boolean;
 }
 
 export default defineNuxtModule<ModuleOptions>({
@@ -42,6 +47,7 @@ export default defineNuxtModule<ModuleOptions>({
     enabled: true,
     enableComposable: true,
     enableDevtools: true,
+    includeFontPresets: true,
   },
   setup(options, nuxt) {
     // Do nothing if the module is disabled
@@ -67,9 +73,19 @@ export default defineNuxtModule<ModuleOptions>({
     // Add plugin
     addPlugin(resolver.resolve("./runtime/pdfmake.client"));
 
-    // Add composable
+    // Add composable if enabled
     if (options.enableComposable) {
-      addImportsDir(resolver.resolve("./runtime/composables"));
+      addImports({
+        from: resolver.resolve("./runtime/composables/usePDFMake"),
+        name: "usePDFMake",
+      });
+    }
+    // Add if the font presets are included
+    if (options.includeFontPresets) {
+      addImports({
+        from: resolver.resolve("./runtime/composables/fontPresets"),
+        name: "useFontPresets",
+      });
     }
     // Add devtools tab
     if (!options.enableDevtools) return;
