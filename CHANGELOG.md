@@ -1,5 +1,35 @@
 # Changelog
 
+## v0.0.47
+
+[compare changes](https://github.com/BayBreezy/nuxt-pdfmake/compare/v0.0.46...v0.0.47)
+
+### 🩹 Fixes
+
+- **module:** Update compatibility to include nuxt 4 ([b6c8775](https://github.com/BayBreezy/nuxt-pdfmake/commit/b6c8775))
+
+### 💅 Refactors
+
+- **playground:** Update folder structure to work  with upcoming nuxt 4 update ([81d0b2d](https://github.com/BayBreezy/nuxt-pdfmake/commit/81d0b2d))
+
+### 🏡 Chore
+
+- **release:** V0.0.46 ([3245467](https://github.com/BayBreezy/nuxt-pdfmake/commit/3245467))
+- **module:** Add new `includeFontPresets` option to the module ([8ee6a72](https://github.com/BayBreezy/nuxt-pdfmake/commit/8ee6a72))
+- **module:** Update pdfmake cdn to latest stable ([d7881aa](https://github.com/BayBreezy/nuxt-pdfmake/commit/d7881aa))
+- **module:** Remove unused import ([9f9277e](https://github.com/BayBreezy/nuxt-pdfmake/commit/9f9277e))
+- Update package exports ([c919a0b](https://github.com/BayBreezy/nuxt-pdfmake/commit/c919a0b))
+- Update release script to include formatting ([56f1957](https://github.com/BayBreezy/nuxt-pdfmake/commit/56f1957))
+- Update release script ([04cfd99](https://github.com/BayBreezy/nuxt-pdfmake/commit/04cfd99))
+
+### 🎨 Styles
+
+- Format codebase ([74718bc](https://github.com/BayBreezy/nuxt-pdfmake/commit/74718bc))
+
+### ❤️ Contributors
+
+- Behon Baker ([@BayBreezy](https://github.com/BayBreezy))
+
 ## v0.0.46
 
 [compare changes](https://github.com/BayBreezy/nuxt-pdfmake/compare/v0.0.45...v0.0.46)
