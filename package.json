@@ -49,7 +49,7 @@
     "test:watch": "vitest watch"
   },
   "dependencies": {
-    "@nuxt/kit": "^3.17.7",
+    "@nuxt/kit": "^4.0.0",
     "@types/pdfmake": "^0.2.11",
     "pdfmake": "^0.2.20"
   },
