@@ -44,7 +44,7 @@
     "datatables.net-vue3": "^3.0.4",
     "dotenv": "^17.2.0",
     "jszip": "^3.10.1",
-    "nuxt": "^3.17.7",
+    "nuxt": "^4.0.3",
     "nuxt-pdfmake": "^0.0.46",
     "radix-vue": "^1.9.17",
     "tailwind-variants": "^1.0.0",
