@@ -64,7 +64,7 @@
     "format": "oxfmt --write .",
     "format:check": "oxfmt --check .",
     "lint": "oxlint .",
-    "netlify": "bun install --frozen-lockfile && bun run docs:build",
+    "netlify": "bun install --frozen-lockfile && bun run dev:prepare && bun run prepack && bun install --frozen-lockfile --cwd docs && NODE_OPTIONS=--max-old-space-size=7120 bun run --cwd docs build",
     "prepack": "bun run --cwd module prepack",
     "prepare": "husky",
     "release": "bun run validate && bun run --cwd module release",
