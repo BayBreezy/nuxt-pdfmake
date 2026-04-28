@@ -1,0 +1,81 @@
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Exact version to release. Leave empty to let changelogen infer it."
+        required: false
+        type: string
+      bump:
+        description: "Bump type used when version is empty."
+        required: true
+        default: "auto"
+        type: choice
+        options:
+          - auto
+          - patch
+          - minor
+          - major
+          - prerelease
+
+permissions:
+  contents: write
+  id-token: write
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.3.9
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Validate
+        run: bun run validate
+
+      - name: Release package
+        working-directory: module
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_CONFIG_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          set -euo pipefail
+
+          args=(--release --clean --no-commit --no-tag --no-github)
+          if [ -n "${{ inputs.version }}" ]; then
+            args+=(-r "${{ inputs.version }}")
+          elif [ "${{ inputs.bump }}" != "auto" ]; then
+            args+=(--${{ inputs.bump }})
+          fi
+
+          changelogen "${args[@]}"
+          bun install
+
+          VERSION=$(node -p "require('./package.json').version")
+          git add ../CHANGELOG.md package.json ../bun.lock
+          git commit -m "chore(release): v$VERSION"
+          git tag -am "v$VERSION" "v$VERSION"
+
+          bun publish
+          git push --follow-tags
+          changelogen gh release

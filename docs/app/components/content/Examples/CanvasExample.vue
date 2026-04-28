@@ -1,0 +1,269 @@
+<template>
+  <main class="h-175 w-full">
+    <UiIframeLazy v-if="pdfLink" :src="pdfLink" class="h-full w-full" />
+  </main>
+</template>
+
+<script setup lang="ts">
+const pdfLink = ref<string | null>(null);
+
+const loadPdf = async () => {
+  const pdfMake = usePDFMake();
+  if (!pdfMake) return;
+
+  const chartData = [
+    { label: "Jan", value: 42, color: "#0369a1" },
+    { label: "Feb", value: 58, color: "#0369a1" },
+    { label: "Mar", value: 35, color: "#0369a1" },
+    { label: "Apr", value: 71, color: "#16a34a" },
+    { label: "May", value: 89, color: "#16a34a" },
+    { label: "Jun", value: 64, color: "#16a34a" },
+  ];
+
+  const chartH = 100;
+  const barW = 44;
+  const gap = 18;
+  const maxVal = 100;
+
+  const bars = chartData.flatMap((bar, i) => {
+    const x = i * (barW + gap) + 8;
+    const h = (bar.value / maxVal) * chartH;
+    return [{ type: "rect" as const, x, y: chartH - h, w: barW, h, color: bar.color, r: 2 }];
+  });
+
+  pdfLink.value = await pdfMake
+    .createPdf({
+      info: {
+        title: "Canvas Drawing Reference",
+        author: "Acme Engineering",
+        subject: "pdfMake vector drawing with canvas",
+        keywords: "canvas, shapes, lines, rectangles, ellipses, polylines, pdfmake",
+        creator: "Nuxt pdfMake",
+        producer: "pdfmake",
+      },
+      pageMargins: [40, 46, 40, 42],
+      content: [
+        {
+          columns: [
+            [
+              { text: "Canvas Drawing", style: "title" },
+              {
+                text: "Vector shapes — lines, rectangles, ellipses, polylines, and charts",
+                style: "subtitle",
+              },
+            ],
+            {
+              text: `Generated ${new Date().toLocaleDateString()}`,
+              style: "meta",
+              alignment: "right",
+            },
+          ],
+          marginBottom: 22,
+        },
+
+        { text: "1. Lines", style: "sectionTitle" },
+        {
+          text: "Lines support lineWidth, lineColor, dash, and lineCap. Combine them to create dividers, grids, or decorative elements.",
+          style: "bodyText",
+          marginBottom: 8,
+        },
+        {
+          canvas: [
+            { type: "line", x1: 0, y1: 8, x2: 380, y2: 8, lineWidth: 1, lineColor: "#1d293d" },
+            { type: "line", x1: 0, y1: 22, x2: 380, y2: 22, lineWidth: 3, lineColor: "#0369a1" },
+            {
+              type: "line",
+              x1: 0,
+              y1: 36,
+              x2: 380,
+              y2: 36,
+              lineWidth: 1.5,
+              lineColor: "#64748b",
+              dash: { length: 8, space: 4 },
+            },
+            {
+              type: "line",
+              x1: 0,
+              y1: 50,
+              x2: 380,
+              y2: 50,
+              lineWidth: 2,
+              lineColor: "#16a34a",
+              dash: { length: 2, space: 3 },
+            },
+            { type: "line", x1: 0, y1: 64, x2: 380, y2: 64, lineWidth: 4, lineColor: "#dc2626" },
+          ],
+          margin: [0, 0, 0, 18],
+        },
+
+        { text: "2. Rectangles", style: "sectionTitle" },
+        {
+          text: "Rectangles accept fill color, stroke, border radius (r), and fillOpacity for transparency effects.",
+          style: "bodyText",
+          marginBottom: 8,
+        },
+        {
+          canvas: [
+            { type: "rect", x: 0, y: 0, w: 90, h: 52, color: "#0f172a" },
+            { type: "rect", x: 104, y: 0, w: 90, h: 52, color: "#0369a1", r: 8 },
+            { type: "rect", x: 208, y: 0, w: 90, h: 52, lineColor: "#0369a1", lineWidth: 2 },
+            {
+              type: "rect",
+              x: 312,
+              y: 0,
+              w: 90,
+              h: 52,
+              color: "#16a34a",
+              fillOpacity: 0.2,
+              lineColor: "#16a34a",
+              lineWidth: 1.5,
+            },
+          ],
+          margin: [0, 0, 0, 18],
+        },
+
+        { text: "3. Ellipses", style: "sectionTitle" },
+        {
+          text: "Ellipses are defined by a center point, r1 (horizontal radius), and r2 (vertical radius).",
+          style: "bodyText",
+          marginBottom: 8,
+        },
+        {
+          canvas: [
+            { type: "ellipse", x: 45, y: 32, r1: 44, r2: 30, color: "#0f172a" },
+            { type: "ellipse", x: 145, y: 32, r1: 32, r2: 32, color: "#0369a1" },
+            { type: "ellipse", x: 240, y: 32, r1: 44, r2: 20, lineColor: "#0369a1", lineWidth: 2 },
+            {
+              type: "ellipse",
+              x: 335,
+              y: 32,
+              r1: 36,
+              r2: 24,
+              color: "#dc2626",
+              fillOpacity: 0.18,
+              lineColor: "#dc2626",
+              lineWidth: 1.5,
+            },
+          ],
+          margin: [0, 0, 0, 18],
+        },
+
+        { text: "4. Polylines", style: "sectionTitle" },
+        {
+          text: "Polylines connect a series of coordinate points. Use them to trace paths, trend lines, or custom shapes.",
+          style: "bodyText",
+          marginBottom: 8,
+        },
+        {
+          canvas: [
+            {
+              type: "polyline",
+              points: [
+                { x: 0, y: 50 },
+                { x: 70, y: 20 },
+                { x: 140, y: 38 },
+                { x: 210, y: 8 },
+                { x: 280, y: 28 },
+                { x: 380, y: 4 },
+              ],
+              lineWidth: 2.5,
+              lineColor: "#0369a1",
+            },
+            {
+              type: "polyline",
+              points: [
+                { x: 0, y: 70 },
+                { x: 70, y: 55 },
+                { x: 140, y: 65 },
+                { x: 210, y: 42 },
+                { x: 280, y: 58 },
+                { x: 380, y: 35 },
+              ],
+              lineWidth: 2,
+              lineColor: "#16a34a",
+              dash: { length: 6, space: 3 },
+            },
+          ],
+          margin: [0, 0, 0, 18],
+        },
+
+        { text: "5. Composed Bar Chart", style: "sectionTitle" },
+        {
+          text: "Canvas primitives can be combined to build custom data visualizations entirely within pdfMake.",
+          style: "bodyText",
+          marginBottom: 8,
+        },
+        {
+          canvas: [
+            {
+              type: "line",
+              x1: 0,
+              y1: chartH + 1,
+              x2: chartData.length * (barW + gap) + 8,
+              y2: chartH + 1,
+              lineWidth: 0.5,
+              lineColor: "#e2e8f0",
+            },
+            ...bars,
+          ],
+          margin: [0, 0, 0, 4],
+        },
+        {
+          columns: chartData.map((d, i) => ({
+            width: barW + gap,
+            stack: [
+              { text: d.label, style: "barLabel", margin: [i === 0 ? 8 : 0, 0, 0, 0] },
+              { text: String(d.value), style: "barValue", margin: [i === 0 ? 8 : 0, 0, 0, 0] },
+            ],
+          })),
+        },
+      ],
+      defaultStyle: {
+        color: "#1d293d",
+        fontSize: 9,
+      },
+      styles: {
+        title: {
+          fontSize: 22,
+          bold: true,
+          color: "#0f172a",
+        },
+        subtitle: {
+          fontSize: 10,
+          color: "#64748b",
+          marginTop: 3,
+        },
+        meta: {
+          fontSize: 9,
+          color: "#64748b",
+        },
+        sectionTitle: {
+          fontSize: 12,
+          bold: true,
+          color: "#0f172a",
+          marginBottom: 4,
+        },
+        bodyText: {
+          color: "#64748b",
+          fontSize: 9,
+        },
+        barLabel: {
+          fontSize: 8,
+          color: "#64748b",
+          alignment: "center",
+        },
+        barValue: {
+          fontSize: 8,
+          bold: true,
+          color: "#0f172a",
+          alignment: "center",
+        },
+      },
+    })
+    .getDataUrl();
+};
+
+onMounted(() => {
+  loadPdf();
+});
+</script>

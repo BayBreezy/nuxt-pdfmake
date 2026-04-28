@@ -1,71 +1,107 @@
 {
-  "name": "nuxt-pdfmake",
-  "version": "0.0.47",
-  "description": "Easily generate PDFs in Nuxt.js using pdfmake",
-  "keywords": [
-    "pdfmake",
-    "nuxt",
-    "nuxt-module",
-    "nuxt-pdfmake"
-  ],
-  "homepage": "https://nuxt-pdfmake.behonbaker.com",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/BayBreezy/nuxt-pdfmake.git"
-  },
-  "license": "MIT",
+  "name": "nuxt-pdfmake-monorepo",
+  "private": true,
   "author": {
     "name": "Behon Baker",
     "email": "behon.baker@yahoo.com",
-    "url": "https://behonbaker.com/"
+    "url": "https://behonbaker.com"
   },
-  "type": "module",
-  "exports": {
-    ".": {
-      "types": "./dist/types.d.mts",
-      "import": "./dist/module.mjs",
-      "require": "./dist/module.mjs"
+  "workspaces": {
+    "packages": [
+      "module",
+      "playground"
+    ],
+    "catalog": {
+      "@antfu/ni": "^30.1.0",
+      "@nuxt/devtools": "^3.2.4",
+      "@nuxt/devtools-kit": "^4.0.0-alpha.4",
+      "@nuxt/fonts": "^0.14.0",
+      "@nuxt/icon": "^2.2.1",
+      "@nuxt/kit": "^4.4.2",
+      "@nuxt/module-builder": "^1.0.2",
+      "@nuxt/schema": "^4.4.2",
+      "@nuxt/test-utils": "^4.0.3",
+      "@nuxtjs/color-mode": "^4.0.0",
+      "@tailwindcss/forms": "^0.5.11",
+      "@tailwindcss/vite": "^4.2.4",
+      "@types/node": "^25.6.0",
+      "@types/pdfmake": "^0.3.2",
+      "@vueuse/nuxt": "^14.2.1",
+      "changelogen": "^0.6.2",
+      "google-font-metadata": "^6.0.8",
+      "husky": "^9.1.7",
+      "lint-staged": "^16.4.0",
+      "motion-v": "^2.2.1",
+      "nuxt": "^4.4.2",
+      "oxfmt": "^0.47.0",
+      "oxlint": "^1.62.0",
+      "pdfmake": "^0.3.7",
+      "reka-ui": "^2.9.6",
+      "tailwind-merge": "^3.5.0",
+      "tailwind-variants": "^3.2.2",
+      "tailwindcss": "^4.2.4",
+      "tw-animate-css": "^1.4.0",
+      "typescript": "^6.0.3",
+      "vitest": "^4.1.5",
+      "vue": "^3.5.33",
+      "vue-router": "5.0.6"
     }
   },
-  "main": "./dist/module.mjs",
-  "files": [
-    "dist"
-  ],
+  "type": "module",
   "scripts": {
-    "afterClone": "npm i && cd playground && npm i && cd ../docs && npm i && cd .. && npm run dev:prepare",
-    "dev": "nuxi dev playground",
-    "dev:build": "nuxi build playground",
-    "dev:prepare": "nuxt-module-build prepare --stub && nuxi prepare playground",
-    "docs:build": "nuxi build docs",
-    "format": "prettier --write .",
-    "lint": "eslint . --fix",
-    "netlify": "npm run afterClone && npm run prepack && npm run dev:build && npm run docs:build",
-    "prepack": "nuxt-module-build build",
+    "automd:docs": "nlx automd@latest --dir docs/content --input '**/*.md' --watch",
+    "build": "bun run prepack",
+    "build:docs": "bun run docs:build",
+    "build:playground": "bun run dev:build",
+    "ci": "bun run lint && bun run test && bun run prepack",
+    "clean": "rm -rf .nuxt .output dist node_modules bun.lock module/.nuxt module/.output module/dist playground/.nuxt playground/.output playground/dist docs/.data docs/.nuxt docs/.output docs/dist docs/node_modules",
+    "dev": "bun run dev:prepare && bun run --cwd playground dev",
+    "dev:docs": "bun run dev:prepare && bun run --cwd docs dev",
+    "dev:build": "bun run prepack && bun run --cwd playground build",
+    "dev:prepare": "bun run --cwd module dev:prepare && bun run --cwd playground nuxt:prepare",
+    "docs:build": "bun run prepack && NODE_OPTIONS=--max-old-space-size=7120 bun run --cwd docs build",
+    "docs:prepare": "bun run --cwd docs nuxt:prepare",
+    "format": "oxfmt --write .",
+    "format:check": "oxfmt --check .",
+    "lint": "oxlint .",
+    "netlify": "bun install --frozen-lockfile && bun run docs:build",
+    "prepack": "bun run --cwd module prepack",
     "prepare": "husky",
-    "release": "npm run lint && npm run format && npm run test && npm run prepack && changelogen --release && npm publish && git push --follow-tags",
-    "rm:lock": "rm -rf package-lock.json playground/package-lock.json docs/package-lock.json",
-    "start:dev": "yarn prepack && yarn dev:build && node playground/.output/server/index.mjs",
+    "release": "bun run validate && bun run --cwd module release",
+    "release:dry": "bun run --cwd module release:dry",
+    "release:github": "bun run --cwd module release:github",
+    "setup": "bun install && bun run dev:prepare",
+    "start:dev": "bun run prepack && bun run dev:build && HOST=127.0.0.1 node playground/.output/server/index.mjs",
     "test": "vitest run",
-    "test:watch": "vitest watch"
-  },
-  "dependencies": {
-    "@nuxt/kit": "^3.17.7",
-    "@types/pdfmake": "^0.2.11",
-    "pdfmake": "^0.2.20"
+    "test:watch": "vitest watch",
+    "validate": "bun run lint && bun run test && bun run prepack"
   },
   "devDependencies": {
-    "@ianvs/prettier-plugin-sort-imports": "^4.5.1",
-    "@nuxt/devtools": "^2.6.2",
-    "@nuxt/eslint-config": "^1.5.2",
-    "@nuxt/module-builder": "^1.0.1",
-    "@nuxt/schema": "^3.17.7",
-    "@nuxt/test-utils": "^3.19.2",
-    "@types/node": "^24.0.14",
-    "changelogen": "^0.6.2",
-    "eslint": "^9.31.0",
-    "husky": "^9.1.7",
-    "nuxt": "^3.17.7",
-    "prettier-plugin-tailwindcss": "^0.6.14",
-    "vitest": "^3.2.4"
-  }
+    "@antfu/ni": "catalog:",
+    "@nuxt/devtools": "catalog:",
+    "@nuxt/kit": "catalog:",
+    "@nuxt/test-utils": "catalog:",
+    "@types/node": "catalog:",
+    "changelogen": "catalog:",
+    "husky": "catalog:",
+    "lint-staged": "catalog:",
+    "nuxt": "catalog:",
+    "oxfmt": "catalog:",
+    "oxlint": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  },
+  "lint-staged": {
+    "*.{js,ts,vue,mjs,cjs}": [
+      "oxlint",
+      "oxfmt --no-error-on-unmatched-pattern"
+    ],
+    "*.{json,yaml,yml}": [
+      "oxfmt --write"
+    ]
+  },
+  "packageManager": "bun@1.3.9",
+  "trustedDependencies": [
+    "@parcel/watcher"
+  ]
 }

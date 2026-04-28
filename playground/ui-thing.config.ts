@@ -1,11 +1,11 @@
 export default {
   theme: "zinc",
-  tailwindCSSLocation: "assets/css/tailwind.css",
-  tailwindConfigLocation: "tailwind.config.js",
-  componentsLocation: "components/Ui",
-  composablesLocation: "composables",
-  utilsLocation: "utils",
+  tailwindCSSLocation: "app/assets/css/tailwind.css",
+  componentsLocation: "app/components/Ui",
+  composablesLocation: "app/composables",
+  pluginsLocation: "app/plugins",
+  utilsLocation: "app/utils",
   force: true,
   useDefaultFilename: true,
-  packageManager: "npm",
+  packageManager: "bun",
 };

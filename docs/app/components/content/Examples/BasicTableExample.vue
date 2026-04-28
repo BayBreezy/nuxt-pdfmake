@@ -1,0 +1,201 @@
+<template>
+  <main class="h-175 w-full">
+    <UiIframeLazy v-if="pdfLink" :src="pdfLink" class="h-full w-full" />
+  </main>
+</template>
+
+<script setup lang="ts">
+import { faker } from "@faker-js/faker";
+
+const pdfLink = ref<string | null>(null);
+
+const loadPdf = async () => {
+  const pdfMake = usePDFMake();
+  if (!pdfMake) return;
+
+  const departments = ["Engineering", "Operations", "Finance", "People", "Sales"] as const;
+  const users = Array.from({ length: 18 }, (_, index) => {
+    const phoneNumber = faker.helpers.fromRegExp(/[1-9]{3}-[1-9]{3}-[0-9]{4}/);
+
+    return {
+      id: `EMP-${String(index + 1).padStart(3, "0")}`,
+      name: faker.person.fullName(),
+      title: faker.person.jobTitle(),
+      department: faker.helpers.arrayElement(departments),
+      phoneNumber,
+      phoneLink: `tel:+1${phoneNumber.replaceAll("-", "")}`,
+      status: faker.helpers.arrayElement(["Active", "Inactive"]) as "Active" | "Inactive",
+    };
+  });
+
+  pdfMake.addTableLayouts({
+    custom: {
+      fillColor: (rowIndex: number) => {
+        if (rowIndex === 0) return "#1d293d";
+        return rowIndex % 2 === 0 ? "#f8fafc" : null;
+      },
+      hLineWidth: (rowIndex: number) => (rowIndex === 0 ? 0 : 0.5),
+      vLineWidth: () => 0,
+      hLineColor: "#e2e8f0",
+      paddingBottom: () => 9,
+      paddingTop: () => 9,
+      paddingLeft: () => 10,
+      paddingRight: () => 10,
+    },
+  });
+
+  pdfLink.value = await pdfMake
+    .createPdf({
+      info: {
+        title: "Organization User Report",
+        author: "Acme Operations Group",
+        subject: "Active user directory with department and phone contact details",
+        keywords: "users, directory, organization, contacts, departments",
+        creator: "Nuxt pdfMake",
+        producer: "pdfmake",
+      },
+      pageMargins: [40, 46, 40, 42],
+      content: [
+        {
+          columns: [
+            [
+              { text: "Organization User Report", style: "title" },
+              { text: "Acme Operations Group", style: "subtitle" },
+            ],
+            {
+              text: `Generated ${new Date().toLocaleDateString()}`,
+              style: "meta",
+              alignment: "right",
+            },
+          ],
+          marginBottom: 22,
+        },
+        {
+          layout: "noBorders",
+          table: {
+            widths: ["*", "*", "*"],
+            body: [
+              [
+                { text: "Active users\n18", style: "stat" },
+                { text: "Departments\n5", style: "stat" },
+                { text: "Report type\nDirectory", style: "stat" },
+              ],
+            ],
+          },
+          marginBottom: 20,
+        },
+        { text: "User Directory", style: "sectionTitle" },
+        {
+          text: "Primary contacts by department. Phone numbers are linked for click-to-call workflows where supported by the PDF viewer.",
+          style: "bodyText",
+          marginBottom: 10,
+        },
+        {
+          layout: "custom",
+          color: "#1d293d",
+          table: {
+            headerRows: 1,
+            widths: [54, "*", 88, 76, 92],
+            body: [
+              ["ID", "User", "Department", "Phone", "Status"].map((label) => ({
+                text: label,
+                style: "tableHeader",
+              })),
+              ...users.map((user) => [
+                { text: user.id, style: "idCell" },
+                {
+                  stack: [
+                    { text: user.name, style: "nameCell" },
+                    { text: user.title, style: "mutedCell" },
+                  ],
+                },
+                user.department,
+                {
+                  text: user.phoneNumber,
+                  link: user.phoneLink,
+                  style: "phoneCell",
+                },
+                {
+                  text: user.status,
+                  style: user.status === "Active" ? "statusCellActive" : "statusCellInactive",
+                },
+              ]),
+            ],
+          },
+        },
+      ],
+      defaultStyle: {
+        color: "#1d293d",
+        fontSize: 9,
+      },
+      styles: {
+        title: {
+          fontSize: 22,
+          bold: true,
+          color: "#0f172a",
+        },
+        subtitle: {
+          fontSize: 10,
+          color: "#64748b",
+          marginTop: 3,
+        },
+        meta: {
+          fontSize: 9,
+          color: "#64748b",
+        },
+        stat: {
+          bold: true,
+          color: "#0f172a",
+          fillColor: "#f8fafc",
+          margin: [10, 8, 10, 8],
+        },
+        sectionTitle: {
+          fontSize: 13,
+          bold: true,
+          color: "#0f172a",
+          marginBottom: 4,
+        },
+        bodyText: {
+          color: "#64748b",
+          fontSize: 9,
+        },
+        tableHeader: {
+          bold: true,
+          color: "#ffffff",
+          fontSize: 8,
+        },
+        idCell: {
+          color: "#64748b",
+          fontSize: 8,
+        },
+        nameCell: {
+          bold: true,
+          color: "#0f172a",
+        },
+        mutedCell: {
+          color: "#64748b",
+          fontSize: 8,
+          marginTop: 2,
+        },
+        phoneCell: {
+          color: "#0084d1",
+          decoration: "underline",
+        },
+        statusCellActive: {
+          bold: true,
+          color: "#16a34a",
+          fontSize: 8,
+        },
+        statusCellInactive: {
+          bold: true,
+          color: "#dc2626",
+          fontSize: 8,
+        },
+      },
+    })
+    .getDataUrl();
+};
+onMounted(() => {
+  loadPdf();
+});
+</script>

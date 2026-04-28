@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Questions and discussions
+    url: https://github.com/BayBreezy/nuxt-pdfmake/discussions
+    about: Ask usage questions or discuss ideas that are not actionable issues yet.
