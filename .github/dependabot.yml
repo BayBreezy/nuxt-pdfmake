@@ -6,6 +6,7 @@ updates:
   - package-ecosystem: "npm"
     directories:
       - "/"
+      - "/module"
       - "/playground"
       - "/docs"
     schedule:

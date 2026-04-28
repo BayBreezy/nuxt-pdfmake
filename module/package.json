@@ -1,0 +1,59 @@
+{
+  "name": "nuxt-pdfmake",
+  "version": "0.1.0",
+  "private": false,
+  "description": "Easily generate PDFs in Nuxt.js using pdfmake",
+  "keywords": [
+    "nuxt",
+    "nuxt-module",
+    "nuxt-pdfmake",
+    "pdfmake"
+  ],
+  "homepage": "https://nuxt-pdfmake.behonbaker.com",
+  "license": "MIT",
+  "author": {
+    "name": "Behon Baker",
+    "email": "behon.baker@yahoo.com",
+    "url": "https://behonbaker.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BayBreezy/nuxt-pdfmake.git"
+  },
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "main": "./dist/module.mjs",
+  "exports": {
+    ".": {
+      "types": "./dist/types.d.mts",
+      "import": "./dist/module.mjs",
+      "require": "./dist/module.mjs"
+    }
+  },
+  "scripts": {
+    "changelog": "changelogen",
+    "dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare",
+    "prepack": "nuxt-module-build build",
+    "release": "bun run prepack && changelogen --release --clean --no-commit --no-tag --no-github && bun install && VERSION=$(node -p \"require('./package.json').version\") && git add ../CHANGELOG.md package.json ../bun.lock && git commit -m \"chore(release): v$VERSION\" && git tag -am \"v$VERSION\" \"v$VERSION\" && bun publish && git push --follow-tags && changelogen gh release",
+    "release:dry": "changelogen --clean",
+    "release:github": "changelogen gh release"
+  },
+  "dependencies": {
+    "@nuxt/devtools-kit": "^4.0.0-alpha.4",
+    "@nuxt/kit": "^4.4.2",
+    "@types/pdfmake": "^0.3.2",
+    "defu": "^6.1.7",
+    "google-font-metadata": "^6.0.8",
+    "pdfmake": "^0.3.7"
+  },
+  "devDependencies": {
+    "@nuxt/module-builder": "^1.0.2",
+    "@nuxt/schema": "^4.4.2",
+    "@types/node": "^25.6.0",
+    "changelogen": "^0.6.2",
+    "nuxt": "^4.4.2",
+    "typescript": "^6.0.3"
+  }
+}

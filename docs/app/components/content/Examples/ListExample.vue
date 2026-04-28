@@ -1,347 +1,230 @@
 <template>
-  <div class="h-[700px] w-full">
-    <iframe v-if="pdfLink" :src="pdfLink" class="h-full w-full" />
-  </div>
+  <main class="h-175 w-full">
+    <UiIframeLazy v-if="pdfLink" :src="pdfLink" class="h-full w-full" />
+  </main>
 </template>
 
 <script setup lang="ts">
-  import { _colors } from "#tailwind-config/theme";
+const pdfLink = ref<string | null>(null);
 
-  const pdfLink = ref();
+const loadPdf = async () => {
+  const pdfMake = usePDFMake();
+  if (!pdfMake) return;
 
-  const loadPdf = () => {
-    const { $pdfMake } = useNuxtApp();
-    $pdfMake
-      .createPdf({
-        content: [
-          { text: "Unordered list", style: "header" },
-          {
-            ul: ["item 1", "item 2", "item 3"],
-          },
-          { text: "\n\nUnordered list with longer lines", style: "header" },
-          {
-            ul: [
-              "item 1",
-              "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Malit profecta versatur nomine ocurreret multavit",
-              "item 3",
+  pdfLink.value = await pdfMake
+    .createPdf({
+      info: {
+        title: "Employee Onboarding Checklist",
+        author: "Acme People Team",
+        subject: "Structured onboarding guide for new hires",
+        keywords: "onboarding, checklist, lists, pdfmake",
+        creator: "Nuxt pdfMake",
+        producer: "pdfmake",
+      },
+      pageMargins: [40, 46, 40, 42],
+      content: [
+        {
+          columns: [
+            [
+              { text: "Employee Onboarding Checklist", style: "title" },
+              { text: "Acme People Team — New Hire Guide", style: "subtitle" },
             ],
-          },
-          { text: "\n\nOrdered list", style: "header" },
-          {
-            ol: ["item 1", "item 2", "item 3"],
-          },
-          { text: "\n\nOrdered list with longer lines", style: "header" },
-          {
-            ol: [
-              "item 1",
-              "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Malit profecta versatur nomine ocurreret multavit",
-              "item 3",
-            ],
-          },
-          { text: "\n\nOrdered list should be descending", style: "header" },
-          {
-            reversed: true,
-            ol: ["item 1", "item 2", "item 3"],
-          },
-          { text: "\n\nOrdered list with start value", style: "header" },
-          {
-            start: 50,
-            ol: ["item 1", "item 2", "item 3"],
-          },
-          { text: "\n\nOrdered list with own values", style: "header" },
-          {
-            ol: [
-              { text: "item 1", counter: 10 },
-              { text: "item 2", counter: 20 },
-              { text: "item 3", counter: 30 },
-              { text: "item 4 without own value" },
-            ],
-          },
-          { text: "\n\nNested lists (ordered)", style: "header" },
-          {
-            ol: [
-              "item 1",
-              [
-                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Malit profecta versatur nomine ocurreret multavit",
+            {
+              text: `Prepared ${new Date().toLocaleDateString()}`,
+              style: "meta",
+              alignment: "right",
+            },
+          ],
+          marginBottom: 22,
+        },
+        { text: "Week 1 — Getting Started", style: "sectionTitle" },
+        {
+          text: "Complete these items in order during your first week. Sub-items must be finished before moving to the next step.",
+          style: "bodyText",
+          marginBottom: 8,
+        },
+        {
+          ol: [
+            {
+              stack: [
+                { text: "Complete HR paperwork", style: "listItem" },
                 {
-                  ol: [
-                    "subitem 1",
-                    "subitem 2",
-                    "subitem 3 - Lorem ipsum dolor sit amet, consectetur adipisicing elit. Malit profecta versatur nomine ocurreret multavit",
-                    "subitem 3 - Lorem ipsum dolor sit amet, consectetur adipisicing elit. Malit profecta versatur nomine ocurreret multavit",
-                    "subitem 3 - Lorem ipsum dolor sit amet, consectetur adipisicing elit. Malit profecta versatur nomine ocurreret multavit",
-                    {
-                      text: [
-                        "subitem 3 - Lorem ipsum dolor sit amet, consectetur adipisicing elit. Malit profecta versatur nomine ocurreret multavit",
-                        "subitem 3 - Lorem ipsum dolor sit amet, consectetur adipisicing elit. Malit profecta versatur nomine ocurreret multavit",
-                        "subitem 3 - Lorem ipsum dolor sit amet, consectetur adipisicing elit. Malit profecta versatur nomine ocurreret multavit",
-                        "subitem 3 - Lorem ipsum dolor sit amet, consectetur adipisicing elit. Malit profecta versatur nomine ocurreret multavit",
-                        "subitem 3 - Lorem ipsum dolor sit amet, consectetur adipisicing elit. Malit profecta versatur nomine ocurreret multavit",
-                        "subitem 3 - Lorem ipsum dolor sit amet, consectetur adipisicing elit. Malit profecta versatur nomine ocurreret multavit",
-                        "subitem 3 - Lorem ipsum dolor sit amet, consectetur adipisicing elit. Malit profecta versatur nomine ocurreret multavit",
-                        "subitem 3 - Lorem ipsum dolor sit amet, consectetur adipisicing elit. Malit profecta versatur nomine ocurreret multavit",
-                      ],
-                    },
-
-                    "subitem 3 - Lorem ipsum dolor sit amet, consectetur adipisicing elit. Malit profecta versatur nomine ocurreret multavit",
-                    "subitem 3 - Lorem ipsum dolor sit amet, consectetur adipisicing elit. Malit profecta versatur nomine ocurreret multavit",
-                    "subitem 3 - Lorem ipsum dolor sit amet, consectetur adipisicing elit. Malit profecta versatur nomine ocurreret multavit",
-                    "subitem 3 - Lorem ipsum dolor sit amet, consectetur adipisicing elit. Malit profecta versatur nomine ocurreret multavit",
-                    "subitem 4",
-                    "subitem 5",
+                  ul: [
+                    "Sign employment agreement",
+                    "Submit tax withholding forms",
+                    "Enroll in benefits (deadline: Day 3)",
                   ],
+                  style: "subList",
                 },
               ],
-              "item 3\nsecond line of item3",
-            ],
-          },
-          { text: "\n\nNested lists (unordered)", style: "header" },
-          {
-            ol: [
-              "item 1",
-              "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Malit profecta versatur nomine ocurreret multavit",
-              {
-                ul: [
-                  "subitem 1",
-                  "subitem 2",
-                  "subitem 3 - Lorem ipsum dolor sit amet, consectetur adipisicing elit. Malit profecta versatur nomine ocurreret multavit",
-                  "subitem 3 - Lorem ipsum dolor sit amet, consectetur adipisicing elit. Malit profecta versatur nomine ocurreret multavit",
-                  "subitem 3 - Lorem ipsum dolor sit amet, consectetur adipisicing elit. Malit profecta versatur nomine ocurreret multavit",
-                  {
-                    text: [
-                      "subitem 3 - Lorem ipsum dolor sit amet, consectetur adipisicing elit. Malit profecta versatur nomine ocurreret multavit",
-                      "subitem 3 - Lorem ipsum dolor sit amet, consectetur adipisicing elit. Malit profecta versatur nomine ocurreret multavit",
-                      "subitem 3 - Lorem ipsum dolor sit amet, consectetur adipisicing elit. Malit profecta versatur nomine ocurreret multavit",
-                      "subitem 3 - Lorem ipsum dolor sit amet, consectetur adipisicing elit. Malit profecta versatur nomine ocurreret multavit",
-                      "subitem 3 - Lorem ipsum dolor sit amet, consectetur adipisicing elit. Malit profecta versatur nomine ocurreret multavit",
-                      "subitem 3 - Lorem ipsum dolor sit amet, consectetur adipisicing elit. Malit profecta versatur nomine ocurreret multavit",
-                      "subitem 3 - Lorem ipsum dolor sit amet, consectetur adipisicing elit. Malit profecta versatur nomine ocurreret multavit",
-                      "subitem 3 - Lorem ipsum dolor sit amet, consectetur adipisicing elit. Malit profecta versatur nomine ocurreret multavit",
-                    ],
-                  },
-
-                  "subitem 3 - Lorem ipsum dolor sit amet, consectetur adipisicing elit. Malit profecta versatur nomine ocurreret multavit",
-                  "subitem 3 - Lorem ipsum dolor sit amet, consectetur adipisicing elit. Malit profecta versatur nomine ocurreret multavit",
-                  "subitem 3 - Lorem ipsum dolor sit amet, consectetur adipisicing elit. Malit profecta versatur nomine ocurreret multavit",
-                  "subitem 3 - Lorem ipsum dolor sit amet, consectetur adipisicing elit. Malit profecta versatur nomine ocurreret multavit",
-                  "subitem 4",
-                  "subitem 5",
-                ],
-              },
-              "item 3\nsecond line of item3",
-            ],
-          },
-          { text: "\n\nUnordered lists inside columns", style: "header" },
-          {
-            columns: [
-              {
-                ul: [
-                  "item 1",
-                  "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Malit profecta versatur nomine ocurreret multavit",
-                ],
-              },
-              {
-                ul: [
-                  "item 1",
-                  "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Malit profecta versatur nomine ocurreret multavit",
-                ],
-              },
-            ],
-          },
-          { text: "\n\nOrdered lists inside columns", style: "header" },
-          {
-            columns: [
-              {
-                ol: [
-                  "item 1",
-                  "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Malit profecta versatur nomine ocurreret multavit",
-                ],
-              },
-              {
-                ol: [
-                  "item 1",
-                  "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Malit profecta versatur nomine ocurreret multavit",
-                ],
-              },
-            ],
-          },
-          { text: "\n\nNested lists width columns", style: "header" },
-          {
-            ul: [
-              "item 1",
-              "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Malit profecta versatur nomine ocurreret multavit",
-              {
-                ol: [
-                  [
-                    {
-                      columns: [
-                        "column 1",
-                        {
-                          stack: [
-                            "column 2",
-                            {
-                              ul: [
-                                "item 1",
-                                "item 2",
-                                {
-                                  ul: ["item", "item", "item"],
-                                },
-                                "item 4",
-                              ],
-                            },
-                          ],
-                        },
-                        "column 3",
-                        "column 4",
-                      ],
-                    },
-                    "subitem 1 in a vertical container",
-                    "subitem 2 in a vertical container",
+            },
+            {
+              stack: [
+                { text: "Set up workstation and accounts", style: "listItem" },
+                {
+                  ul: [
+                    "Activate company email",
+                    "Enable two-factor authentication",
+                    "Install required software from IT portal",
                   ],
-                  "subitem 2",
-                  "subitem 3 - Lorem ipsum dolor sit amet, consectetur adipisicing elit. Malit profecta versatur nomine ocurreret multavit",
-                  "subitem 3 - Lorem ipsum dolor sit amet, consectetur adipisicing elit. Malit profecta versatur nomine ocurreret multavit",
-                  "subitem 3 - Lorem ipsum dolor sit amet, consectetur adipisicing elit. Malit profecta versatur nomine ocurreret multavit",
-                  {
-                    text: [
-                      "subitem 3 - Lorem ipsum dolor sit amet, consectetur adipisicing elit. Malit profecta versatur nomine ocurreret multavit",
-                      "subitem 3 - Lorem ipsum dolor sit amet, consectetur adipisicing elit. Malit profecta versatur nomine ocurreret multavit",
-                      "subitem 3 - Lorem ipsum dolor sit amet, consectetur adipisicing elit. Malit profecta versatur nomine ocurreret multavit",
-                      "subitem 3 - Lorem ipsum dolor sit amet, consectetur adipisicing elit. Malit profecta versatur nomine ocurreret multavit",
-                      "subitem 3 - Lorem ipsum dolor sit amet, consectetur adipisicing elit. Malit profecta versatur nomine ocurreret multavit",
-                      "subitem 3 - Lorem ipsum dolor sit amet, consectetur adipisicing elit. Malit profecta versatur nomine ocurreret multavit",
-                      "subitem 3 - Lorem ipsum dolor sit amet, consectetur adipisicing elit. Malit profecta versatur nomine ocurreret multavit",
-                      "subitem 3 - Lorem ipsum dolor sit amet, consectetur adipisicing elit. Malit profecta versatur nomine ocurreret multavit",
-                    ],
-                  },
-
-                  "subitem 3 - Lorem ipsum dolor sit amet, consectetur adipisicing elit. Malit profecta versatur nomine ocurreret multavit",
-                  "subitem 3 - Lorem ipsum dolor sit amet, consectetur adipisicing elit. Malit profecta versatur nomine ocurreret multavit",
-                  "subitem 3 - Lorem ipsum dolor sit amet, consectetur adipisicing elit. Malit profecta versatur nomine ocurreret multavit",
-                  "subitem 3 - Lorem ipsum dolor sit amet, consectetur adipisicing elit. Malit profecta versatur nomine ocurreret multavit",
-                  "subitem 4",
-                  "subitem 5",
-                ],
-              },
-              "item 3\nsecond line of item3",
-            ],
-          },
-          { text: "\n\nUnordered list with square marker type", style: "header" },
-          {
-            type: "square",
-            ul: ["item 1", "item 2", "item 3"],
-          },
-          { text: "\n\nUnordered list with circle marker type", style: "header" },
-          {
-            type: "circle",
-            ul: ["item 1", "item 2", "item 3"],
-          },
-          { text: "\n\nColored unordered list", style: "header" },
-          {
-            color: "blue",
-            ul: ["item 1", "item 2", "item 3"],
-          },
-          {
-            text: "\n\nColored unordered list with own marker color",
-            style: "header",
-          },
-          {
-            color: "blue",
-            markerColor: "red",
-            ul: ["item 1", "item 2", "item 3"],
-          },
-          { text: "\n\nColored ordered list", style: "header" },
-          {
-            color: "blue",
-            ol: ["item 1", "item 2", "item 3"],
-          },
-          {
-            text: "\n\nColored ordered list with own marker color",
-            style: "header",
-          },
-          {
-            color: "blue",
-            markerColor: "red",
-            ol: ["item 1", "item 2", "item 3"],
-          },
-          { text: "\n\nOrdered list - type: lower-alpha", style: "header" },
-          {
-            type: "lower-alpha",
-            ol: ["item 1", "item 2", "item 3"],
-          },
-          { text: "\n\nOrdered list - type: upper-alpha", style: "header" },
-          {
-            type: "upper-alpha",
-            ol: ["item 1", "item 2", "item 3"],
-          },
-
-          { text: "\n\nOrdered list - type: upper-roman", style: "header" },
-          {
-            type: "upper-roman",
-            ol: ["item 1", "item 2", "item 3", "item 4", "item 5"],
-          },
-          { text: "\n\nOrdered list - type: lower-roman", style: "header" },
-          {
-            type: "lower-roman",
-            ol: ["item 1", "item 2", "item 3", "item 4", "item 5"],
-          },
-          { text: "\n\nOrdered list - type: none", style: "header" },
-          {
-            type: "none",
-            ol: ["item 1", "item 2", "item 3"],
-          },
-          { text: "\n\nUnordered list - type: none", style: "header" },
-          {
-            type: "none",
-            ul: ["item 1", "item 2", "item 3"],
-          },
-          { text: "\n\nOrdered list with own separator", style: "header" },
-          {
-            separator: ")",
-            ol: ["item 1", "item 2", "item 3"],
-          },
-          {
-            text: "\n\nOrdered list with own complex separator",
-            style: "header",
-          },
-          {
-            separator: ["(", ")"],
-            ol: ["item 1", "item 2", "item 3"],
-          },
-          { text: "\n\nOrdered list with own items type", style: "header" },
-          {
-            ol: [
-              "item 1",
-              { text: "item 2", listType: "none" },
-              { text: "item 3", listType: "upper-roman" },
-            ],
-          },
-          { text: "\n\nUnordered list with own items type", style: "header" },
-          {
-            ul: [
-              "item 1",
-              { text: "item 2", listType: "none" },
-              { text: "item 3", listType: "circle" },
-            ],
-          },
-        ],
-        styles: {
-          header: {
-            bold: true,
-            fontSize: 15,
-          },
+                  style: "subList",
+                },
+              ],
+            },
+            {
+              stack: [
+                { text: "Meet your team", style: "listItem" },
+                {
+                  ul: [
+                    "Attend department introduction call",
+                    "Schedule 1:1 with your manager",
+                    "Join relevant Slack channels",
+                  ],
+                  style: "subList",
+                },
+              ],
+            },
+          ],
+          style: "mainList",
+          marginBottom: 18,
         },
-        defaultStyle: {
-          fontSize: 12,
-          markerColor: _colors.sky[600],
-          color: _colors.slate[800],
+        { text: "Week 2–4 — Role Ramp-Up", style: "sectionTitle" },
+        {
+          columns: [
+            {
+              width: "*",
+              stack: [
+                { text: "Learning", style: "colHeader" },
+                {
+                  type: "square",
+                  ul: [
+                    "Complete product training modules",
+                    "Shadow a senior team member",
+                    "Review technical documentation",
+                    "Attend weekly all-hands",
+                  ],
+                  style: "checkList",
+                },
+              ],
+            },
+            {
+              width: "*",
+              stack: [
+                { text: "Deliverables", style: "colHeader" },
+                {
+                  type: "square",
+                  ul: [
+                    "Submit 30-day plan to manager",
+                    "Complete first project milestone",
+                    "Present brief team intro",
+                    "Set 90-day goals with manager",
+                  ],
+                  style: "checkList",
+                },
+              ],
+            },
+          ],
+          columnGap: 16,
+          marginBottom: 18,
         },
-      })
-      .getDataUrl((dataUrl: any) => {
-        pdfLink.value = dataUrl;
-      });
-  };
-  onMounted(() => {
-    loadPdf();
-  });
+        { text: "Priority Index", style: "sectionTitle" },
+        {
+          text: "Priority levels used throughout this document:",
+          style: "bodyText",
+          marginBottom: 6,
+        },
+        {
+          columns: [
+            {
+              width: "auto",
+              ol: [
+                { text: "Critical", counter: 1 },
+                { text: "High", counter: 2 },
+                { text: "Standard", counter: 3 },
+              ],
+              style: "priorityList",
+            },
+            {
+              width: "*",
+              stack: [
+                { text: "Must complete before Day 3 or legal deadline.", style: "priorityDesc" },
+                { text: "Required in Week 1 — blocks other tasks.", style: "priorityDesc" },
+                { text: "Complete by end of Week 4 at latest.", style: "priorityDesc" },
+              ],
+            },
+          ],
+          columnGap: 12,
+        },
+      ],
+      defaultStyle: {
+        color: "#1d293d",
+        fontSize: 9,
+        lineHeight: 1.3,
+      },
+      styles: {
+        title: {
+          fontSize: 20,
+          bold: true,
+          color: "#0f172a",
+        },
+        subtitle: {
+          fontSize: 10,
+          color: "#64748b",
+          marginTop: 3,
+        },
+        meta: {
+          fontSize: 9,
+          color: "#64748b",
+        },
+        sectionTitle: {
+          fontSize: 13,
+          bold: true,
+          color: "#0f172a",
+          marginBottom: 4,
+        },
+        bodyText: {
+          color: "#64748b",
+          fontSize: 9,
+        },
+        mainList: {
+          color: "#1d293d",
+        },
+        listItem: {
+          bold: true,
+          color: "#0f172a",
+          marginBottom: 3,
+        },
+        subList: {
+          color: "#475569",
+          fontSize: 8,
+        },
+        colHeader: {
+          bold: true,
+          color: "#0369a1",
+          fontSize: 10,
+          marginBottom: 5,
+        },
+        checkList: {
+          color: "#475569",
+          markerColor: "#0369a1",
+        },
+        priorityList: {
+          bold: true,
+          color: "#0f172a",
+          markerColor: "#dc2626",
+        },
+        priorityDesc: {
+          color: "#64748b",
+          fontSize: 8,
+          marginBottom: 4,
+          marginTop: 2,
+        },
+      },
+    })
+    .getDataUrl();
+};
+
+onMounted(() => {
+  loadPdf();
+});
 </script>

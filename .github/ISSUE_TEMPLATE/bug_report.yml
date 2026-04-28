@@ -1,0 +1,59 @@
+name: Bug report
+description: Report something that is broken or behaving unexpectedly.
+title: "fix: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report this. Please include enough detail for the issue to be reproduced.
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What happened, and what did you expect instead?
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction
+      description: Link to a minimal reproduction, or list the exact steps.
+      placeholder: |
+        1. Install ...
+        2. Configure ...
+        3. Run ...
+    validations:
+      required: true
+  - type: input
+    id: nuxt-version
+    attributes:
+      label: Nuxt version
+      placeholder: "4.4.2"
+    validations:
+      required: true
+  - type: input
+    id: module-version
+    attributes:
+      label: nuxt-pdfmake version
+      placeholder: "1.0.0"
+    validations:
+      required: true
+  - type: dropdown
+    id: runtime
+    attributes:
+      label: Runtime
+      multiple: true
+      options:
+        - Client
+        - Server/Nitro
+        - Build/dev server
+        - Docs/playground
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant logs
+      render: shell

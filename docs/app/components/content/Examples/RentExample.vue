@@ -1,125 +1,266 @@
 <template>
-  <div class="h-[700px] w-full">
-    <iframe v-if="pdfLink" :src="pdfLink" class="h-full w-full" />
-  </div>
+  <main class="h-175 w-full">
+    <UiIframeLazy v-if="pdfLink" :src="pdfLink" class="h-full w-full" />
+  </main>
 </template>
 
 <script setup lang="ts">
-  import { _colors } from "#tailwind-config/theme";
+const pdfLink = ref<string | null>(null);
 
-  const pdfLink = ref();
+const loadPdf = async () => {
+  const pdfMake = usePDFMake();
+  if (!pdfMake) return;
 
-  const loadPdf = async () => {
-    const { $pdfMake } = useNuxtApp();
-
-    const bigMarging: [number, number, number, number] = [0, 0, 0, 30];
-    const smallMarging: [number, number, number, number] = [0, 0, 0, 10];
-
-    $pdfMake
-      .createPdf(
+  pdfLink.value = await pdfMake
+    .createPdf({
+      info: {
+        title: "Rent Receipt",
+        author: "Acme Property Management",
+        subject: "Monthly rent payment receipt",
+        creator: "Nuxt pdfMake",
+        producer: "pdfmake",
+      },
+      pageMargins: [50, 50, 50, 50],
+      content: [
         {
-          content: [
-            {
-              text: "Rent Reciept",
-              margin: bigMarging,
-              style: { alignment: "center", fontSize: 20, bold: true },
-            },
-            // Date on the left
-            {
-              text: [
-                { text: "Date: ", bold: true },
-                { text: "_______________________________", font: "Roboto" },
+          table: {
+            widths: ["*"],
+            body: [
+              [
+                {
+                  stack: [
+                    { text: "RENT RECEIPT", style: "receiptTitle" },
+                    { text: "Acme Property Management", style: "receiptCompany" },
+                  ],
+                  fillColor: "#0f172a",
+                  margin: [20, 18, 20, 18],
+                  alignment: "center",
+                },
               ],
-              margin: bigMarging,
-            },
-            // Tenant
+            ],
+          },
+          layout: "noBorders",
+          marginBottom: 24,
+        },
+        {
+          columns: [
             {
-              text: [
-                { text: "Tenant's Name: ", bold: true },
-                { text: "____________________________________", font: "Roboto" },
-              ],
-              margin: smallMarging,
-            },
-            //Address
-            {
-              text: [
-                { text: "Address of the rented property: ", bold: true },
-                { text: "_____________________________________________", font: "Roboto" },
-              ],
-              margin: bigMarging,
-            },
-            // Amoun received
-            {
-              text: [
-                { text: "Amount Received: ", bold: true },
-                { text: "____________________________________", font: "Roboto" },
-              ],
-              margin: smallMarging,
-            },
-            // Payment method
-            { text: "Payment Method:", style: { bold: true }, margin: smallMarging },
-            "[  ]  Cash",
-            "[  ]  Check",
-            "[  ]  Money Order",
-            { text: "[  ]  Other", margin: smallMarging },
-
-            {
-              text: [
-                { text: "Rent required: ", bold: true },
-                { text: "____________________________________", font: "Roboto" },
-              ],
-              margin: smallMarging,
-            },
-            {
-              text: [
-                { text: "Rent outstanding:", bold: true },
-                { text: "____________________________________", font: "Roboto" },
-              ],
-              margin: smallMarging,
-            },
-            {
-              text: [
-                { text: "Rent covers from ", bold: true },
-                { text: "________________________", font: "Roboto" },
-                { text: " to ", bold: true },
-                { text: "________________________", font: "Roboto" },
-              ],
-              margin: [0, 0, 0, 50],
-            },
-            {
-              columns: [
-                { text: { text: "Landlord's Signature: ", bold: true }, margin: smallMarging },
-                { text: { text: "Tenant's Signature: ", bold: true }, margin: smallMarging },
+              width: "*",
+              stack: [
+                { text: "Receipt No.", style: "fieldLabel" },
+                { text: "RCP-2026-0001", style: "fieldValue" },
               ],
             },
             {
-              columns: [
-                { text: { text: "_______________________________", font: "Roboto" } },
-                { text: { text: "_______________________________", font: "Roboto" } },
+              width: "*",
+              stack: [
+                { text: "Date Issued", style: "fieldLabel" },
+                {
+                  text: new Date().toLocaleDateString(),
+                  style: "fieldValue",
+                  alignment: "right",
+                },
               ],
             },
           ],
-          defaultStyle: { color: _colors.slate[700], font: "playfair" },
+          marginBottom: 20,
         },
-        {},
         {
-          playfair: {
-            normal:
-              "https://cdn.jsdelivr.net/npm/typeface-playfair-display@1.1.13/files/playfair-display-latin-400.woff",
-            bold: "https://cdn.jsdelivr.net/npm/typeface-playfair-display@1.1.13/files/playfair-display-latin-700.woff",
-            italics:
-              "https://cdn.jsdelivr.net/npm/typeface-playfair-display@1.1.13/files/playfair-display-latin-400italic.woff",
-            bolditalics:
-              "https://cdn.jsdelivr.net/npm/typeface-playfair-display@1.1.13/files/playfair-display-latin-700italic.woff",
+          table: {
+            widths: ["*", "*"],
+            body: [
+              [
+                {
+                  stack: [
+                    { text: "Tenant Name", style: "cardLabel" },
+                    { text: "_________________________________", style: "blankLine" },
+                  ],
+                  margin: [12, 10, 12, 10],
+                },
+                {
+                  stack: [
+                    { text: "Property Address", style: "cardLabel" },
+                    { text: "_________________________________", style: "blankLine" },
+                  ],
+                  margin: [12, 10, 12, 10],
+                },
+              ],
+            ],
           },
-          ...useFontPresets(),
-        }
-      )
-      .getDataUrl((dataUrl: any) => {
-        pdfLink.value = dataUrl;
-      });
-  };
-  onMounted(async () => {
-    await loadPdf();
-  });
+          layout: { defaultBorder: false, fillColor: () => "#f8fafc" },
+          marginBottom: 16,
+        },
+        {
+          table: {
+            widths: ["*", 120],
+            headerRows: 1,
+            body: [
+              [
+                { text: "Description", style: "tableHeader" },
+                { text: "Amount", style: "tableHeader", alignment: "right" },
+              ],
+              ["Monthly rent", { text: "$__________", style: "amountCell", alignment: "right" }],
+              [
+                "Utilities (if applicable)",
+                { text: "$__________", style: "amountCell", alignment: "right" },
+              ],
+              [
+                "Late fee (if applicable)",
+                { text: "$__________", style: "amountCell", alignment: "right" },
+              ],
+              [
+                { text: "Total Amount Received", bold: true, color: "#0f172a" },
+                { text: "$__________", style: "totalCell", alignment: "right" },
+              ],
+            ],
+          },
+          layout: {
+            fillColor: (rowIndex: number) =>
+              rowIndex === 0 ? "#1d293d" : rowIndex % 2 === 0 ? "#f8fafc" : null,
+            hLineColor: () => "#e2e8f0",
+            vLineColor: () => "#e2e8f0",
+            paddingBottom: () => 8,
+            paddingTop: () => 8,
+            paddingLeft: () => 10,
+            paddingRight: () => 10,
+          },
+          marginBottom: 16,
+        },
+        { text: "Payment Method", style: "fieldLabel", marginBottom: 6 },
+        {
+          columns: [
+            { text: "[  ]  Cash", style: "payMethod" },
+            { text: "[  ]  Check", style: "payMethod" },
+            { text: "[  ]  Bank Transfer", style: "payMethod" },
+            { text: "[  ]  Other", style: "payMethod" },
+          ],
+          marginBottom: 20,
+        },
+        {
+          text: [
+            { text: "Rent covers from ", style: "fieldLabel" },
+            { text: "____________________", style: "blankLine" },
+            { text: "  to  ", style: "fieldLabel" },
+            { text: "____________________", style: "blankLine" },
+          ],
+          marginBottom: 36,
+        },
+        {
+          columns: [
+            {
+              width: "*",
+              stack: [
+                { text: "Landlord Signature", style: "signLabel" },
+                { text: " ", marginBottom: 20 },
+                {
+                  canvas: [
+                    {
+                      type: "line",
+                      x1: 0,
+                      y1: 0,
+                      x2: 180,
+                      y2: 0,
+                      lineWidth: 0.5,
+                      lineColor: "#94a3b8",
+                    },
+                  ],
+                },
+                { text: "Date: __________________", style: "signDate", marginTop: 4 },
+              ],
+            },
+            {
+              width: "*",
+              stack: [
+                { text: "Tenant Signature", style: "signLabel" },
+                { text: " ", marginBottom: 20 },
+                {
+                  canvas: [
+                    {
+                      type: "line",
+                      x1: 0,
+                      y1: 0,
+                      x2: 180,
+                      y2: 0,
+                      lineWidth: 0.5,
+                      lineColor: "#94a3b8",
+                    },
+                  ],
+                },
+                { text: "Date: __________________", style: "signDate", marginTop: 4 },
+              ],
+            },
+          ],
+          columnGap: 20,
+        },
+      ],
+      defaultStyle: {
+        color: "#1d293d",
+        fontSize: 10,
+      },
+      styles: {
+        receiptTitle: {
+          fontSize: 20,
+          bold: true,
+          color: "#ffffff",
+          characterSpacing: 3,
+        },
+        receiptCompany: {
+          fontSize: 10,
+          color: "#94a3b8",
+          marginTop: 4,
+        },
+        fieldLabel: {
+          fontSize: 8,
+          color: "#64748b",
+          bold: true,
+          marginBottom: 2,
+        },
+        fieldValue: {
+          fontSize: 11,
+          bold: true,
+          color: "#0f172a",
+        },
+        cardLabel: {
+          fontSize: 8,
+          color: "#64748b",
+          bold: true,
+          marginBottom: 6,
+        },
+        blankLine: {
+          color: "#94a3b8",
+        },
+        tableHeader: {
+          bold: true,
+          color: "#ffffff",
+          fontSize: 8,
+        },
+        amountCell: {
+          color: "#475569",
+        },
+        totalCell: {
+          bold: true,
+          fontSize: 11,
+          color: "#0f172a",
+        },
+        payMethod: {
+          color: "#475569",
+          fontSize: 9,
+        },
+        signLabel: {
+          fontSize: 8,
+          color: "#64748b",
+          bold: true,
+        },
+        signDate: {
+          fontSize: 8,
+          color: "#64748b",
+        },
+      },
+    })
+    .getDataUrl();
+};
+
+onMounted(() => {
+  loadPdf();
+});
 </script>
