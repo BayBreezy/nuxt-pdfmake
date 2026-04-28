@@ -1,5 +1,21 @@
 # Changelog
 
+## v0.1.1
+
+[compare changes](https://github.com/BayBreezy/nuxt-pdfmake/compare/v0.0.47...v0.1.1)
+
+### 🚀 Enhancements
+
+- Prepare for major release ([b3abfd7](https://github.com/BayBreezy/nuxt-pdfmake/commit/b3abfd7))
+
+### 📖 Documentation
+
+- 📝 update changelog ([2099fde](https://github.com/BayBreezy/nuxt-pdfmake/commit/2099fde))
+
+### ❤️ Contributors
+
+- Behon Baker ([@BayBreezy](https://github.com/BayBreezy))
+
 ## v0.0.47
 
 [compare changes](https://github.com/BayBreezy/nuxt-pdfmake/compare/v0.0.46...v0.0.47)
