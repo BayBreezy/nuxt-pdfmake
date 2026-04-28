@@ -6,7 +6,7 @@ const locale = "en";
 export default defineNuxtConfig({
   devtools: { enabled: true },
   extends: ["@baybreezy/docd"],
-  modules: ["../module/src", "@vite-pwa/nuxt"],
+  modules: ["nuxt-pdfmake", "@vite-pwa/nuxt"],
   llms: {
     domain: url,
     title: name,
