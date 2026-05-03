@@ -18,7 +18,7 @@
     "preview": "nuxt preview"
   },
   "dependencies": {
-    "@baybreezy/docd": "^0.0.9",
+    "@baybreezy/docd": "^0.1.6",
     "@faker-js/faker": "^10.4.0",
     "@vite-pwa/nuxt": "^1.1.1",
     "nuxt": "^4.4.2",
