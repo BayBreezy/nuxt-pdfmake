@@ -42,7 +42,7 @@
   },
   "dependencies": {
     "@nuxt/devtools-kit": "^4.0.0-alpha.4",
-    "@nuxt/kit": "^4.4.2",
+    "@nuxt/kit": "^4.4.4",
     "@types/pdfmake": "^0.3.2",
     "defu": "^6.1.7",
     "google-font-metadata": "^6.0.8",
@@ -50,10 +50,10 @@
   },
   "devDependencies": {
     "@nuxt/module-builder": "^1.0.2",
-    "@nuxt/schema": "^4.4.2",
+    "@nuxt/schema": "^4.4.4",
     "@types/node": "^25.6.0",
     "changelogen": "^0.6.2",
-    "nuxt": "^4.4.2",
+    "nuxt": "^4.4.4",
     "typescript": "^6.0.3"
   }
 }
