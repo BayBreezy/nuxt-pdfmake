@@ -14,6 +14,10 @@ Easily add <a target="_blank" href="http://pdfmake.org/#/">pdfMake</a> to your N
 - [✨ &nbsp;Release Notes](/CHANGELOG.md)
 - [📖 &nbsp;Documentation](https://nuxt-pdfmake.behonbaker.com/)
 
+## Deployment Status
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/5e7fe3cb-e40d-452e-a975-f107a9cabf5b/deploy-status)](https://app.netlify.com/projects/helpful-genie-923275/deploys)
+
 ## Features
 
 - `usePDFMake` composable auto-imported on the client
