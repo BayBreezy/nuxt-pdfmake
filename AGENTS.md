@@ -70,14 +70,14 @@ bun run fmt            # oxfmt
 bun run fmt:check      # oxfmt --check
 bun run prepack        # build module dist/
 bun run dev:build      # build the docs site only
-bun run netlify        # full Netlify build: install, stub build, docs build
+bun run netlify        # full Netlify build: install, stub build, module build, static docs generate
 bun run clean          # delete node_modules/.nuxt/lockfiles, then reinstall
 bun run release        # lint + fmt:check + test + build, then changelogen --release + npm publish + git push --follow-tags
 ```
 
 ## Deployment
 
-Docs deploy to Netlify via [netlify.toml](./netlify.toml) (`base = "docs"`, command `cd .. && bun run netlify`, publish `dist`).
+Docs deploy to Netlify via [netlify.toml](./netlify.toml) (`base = "docs"`, command `cd .. && bun run netlify`, publish `dist`; the docs are generated statically, so no Netlify function is needed).
 
 ## License
 
