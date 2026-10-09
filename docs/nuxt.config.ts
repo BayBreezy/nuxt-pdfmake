@@ -62,6 +62,12 @@ export default defineNuxtConfig({
       googleFonts: ["Inter", "Merriweather", "Montserrat", "Nunito", "Playfair Display"],
     },
   },
+  nitro: {
+    prerender: {
+      // The sitemap is a server route; prerender it so the static build ships /sitemap.xml
+      routes: ["/sitemap.xml"],
+    },
+  },
   vite: {
     optimizeDeps: {
       include: ["@faker-js/faker"],
