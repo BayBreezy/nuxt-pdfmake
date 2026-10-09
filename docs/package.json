@@ -17,7 +17,7 @@
     "build": "nuxi build",
     "dev": "nuxi dev --host",
     "generate": "nuxi generate",
-    "preview": "nuxi preview"
+    "preview": "bunx serve .output/public"
   },
   "dependencies": {
     "@baybreezy/docd": "latest",

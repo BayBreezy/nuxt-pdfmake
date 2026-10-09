@@ -44,6 +44,7 @@
     "clean": "node ./scripts/clean.mjs",
     "dev": "bun run dev:prepare && cd docs && bun run dev",
     "dev:build": "cd docs && bun run build",
+    "dev:preview": "cd docs && bun run generate && bun run preview",
     "dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && cd docs && nuxi prepare",
     "fmt": "oxfmt",
     "fmt:check": "oxfmt --check",

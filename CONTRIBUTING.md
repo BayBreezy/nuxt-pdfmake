@@ -27,6 +27,7 @@ bun run fmt            # oxfmt
 bun run fmt:check      # oxfmt --check
 bun run prepack        # build module dist/
 bun run dev:build      # build the docs site
+bun run dev:preview    # generate the static docs and serve them locally
 bun run clean          # wipe node_modules/.nuxt/lockfiles and reinstall
 ```
 

@@ -69,7 +69,8 @@ bun run lint           # oxlint
 bun run fmt            # oxfmt
 bun run fmt:check      # oxfmt --check
 bun run prepack        # build module dist/
-bun run dev:build      # build the docs site only
+bun run dev:build      # build the docs site only (SSR build, not what Netlify deploys)
+bun run dev:preview    # generate the static docs (what Netlify deploys) and serve them locally
 bun run netlify        # full Netlify build: install, stub build, module build, static docs generate
 bun run clean          # delete node_modules/.nuxt/lockfiles, then reinstall
 bun run release        # lint + fmt:check + test + build, then changelogen --release + npm publish + git push --follow-tags
