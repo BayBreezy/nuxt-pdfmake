@@ -36,5 +36,8 @@
     "esbuild",
     "sharp",
     "vue-demi"
-  ]
+  ],
+  "devDependencies": {
+    "node-gyp": "^11.5.0"
+  }
 }
