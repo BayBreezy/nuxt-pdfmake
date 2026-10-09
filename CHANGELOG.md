@@ -1,5 +1,56 @@
 # Changelog
 
+## v0.1.2
+
+[compare changes](https://github.com/BayBreezy/nuxt-pdfmake/compare/v0.1.1...v0.1.2)
+
+### 🚀 Enhancements
+
+- Add preparation step to CI workflow ([7d2968a](https://github.com/BayBreezy/nuxt-pdfmake/commit/7d2968a))
+
+### 🩹 Fixes
+
+- Update netlify script to include build preparation steps ([e491c82](https://github.com/BayBreezy/nuxt-pdfmake/commit/e491c82))
+- Increase memory limit for build script in package.json ([4e79ad7](https://github.com/BayBreezy/nuxt-pdfmake/commit/4e79ad7))
+- Register devtools via docks API and import createPDFBuffer explicitly ([a7e8e4a](https://github.com/BayBreezy/nuxt-pdfmake/commit/a7e8e4a))
+
+### 💅 Refactors
+
+- Move module from module/ to the repo root ([77363d8](https://github.com/BayBreezy/nuxt-pdfmake/commit/77363d8))
+
+### 📖 Documentation
+
+- Update README for clarity and add usage examples ([01ef223](https://github.com/BayBreezy/nuxt-pdfmake/commit/01ef223))
+- Enhance app configuration with GitHub links and navigation options & logo ([72468b8](https://github.com/BayBreezy/nuxt-pdfmake/commit/72468b8))
+- Add logo paths for light and dark themes in index.md ([6f6079b](https://github.com/BayBreezy/nuxt-pdfmake/commit/6f6079b))
+- Update AGENTS, CONTRIBUTING and README for the flat layout ([8ebb160](https://github.com/BayBreezy/nuxt-pdfmake/commit/8ebb160))
+- Add CI, last commit, package size and conventional commits badges to README ([27a39c7](https://github.com/BayBreezy/nuxt-pdfmake/commit/27a39c7))
+- Add Netlify deploy status badge to README ([070b154](https://github.com/BayBreezy/nuxt-pdfmake/commit/070b154))
+
+### 📦 Build
+
+- **docs:** Make docs a standalone project that loads the module from src ([35f3b89](https://github.com/BayBreezy/nuxt-pdfmake/commit/35f3b89))
+
+### 🏡 Chore
+
+- Add nuxt-pdfmake dependency to package.json of docs ([918e07a](https://github.com/BayBreezy/nuxt-pdfmake/commit/918e07a))
+- Update environment variable names in .env.example ([a2c8e37](https://github.com/BayBreezy/nuxt-pdfmake/commit/a2c8e37))
+- Update dependencies ([4d37d97](https://github.com/BayBreezy/nuxt-pdfmake/commit/4d37d97))
+- Remove playground in favor of the docs site as the dev app ([c27370f](https://github.com/BayBreezy/nuxt-pdfmake/commit/c27370f))
+- Update lock files ([6a926b5](https://github.com/BayBreezy/nuxt-pdfmake/commit/6a926b5))
+
+### 🎨 Styles
+
+- Format docs ([0b4ee27](https://github.com/BayBreezy/nuxt-pdfmake/commit/0b4ee27))
+
+### 🤖 CI
+
+- Add ci:check script, Netlify build script, clean script and commitlint ([d0e1964](https://github.com/BayBreezy/nuxt-pdfmake/commit/d0e1964))
+
+### ❤️ Contributors
+
+- Behon Baker ([@BayBreezy](https://github.com/BayBreezy))
+
 ## v0.1.1
 
 [compare changes](https://github.com/BayBreezy/nuxt-pdfmake/compare/v0.0.47...v0.1.1)
