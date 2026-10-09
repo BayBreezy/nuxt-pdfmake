@@ -14,20 +14,19 @@ The module handles all the hard parts: font loading, VFS registration, and expos
   - `fonts.useDefaultRoboto` — toggles the default Roboto font that ships with pdfmake (default: `true` when no other fonts are configured).
 - **Pre-built API endpoint** — `POST /_pdfmake/generate` (enabled in dev by default; `enableApiRoute: true` to enable in production) accepts a `{ docDefinition }` JSON body and returns a PDF binary.
 - **Nuxt DevTools panel** — accessible via the DevTools "PDFMake" tab; shows registered fonts, estimated bundle impact, and a live test PDF generator backed by the API endpoint.
-- **Live playground editor** — `/_editor` route in the playground: split-pane JSON editor with real-time PDF preview.
 
 ## Key files
 
 | Path                                    | Purpose                                                                                               |
 | --------------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| `module/src/module.ts`                         | Module entry — options, async font processing, virtual module generation, plugin/handler registration |
-| `module/src/runtime/pdfmake.client.ts`         | Client plugin — imports pdfmake from npm, registers embedded fonts                                    |
-| `module/src/runtime/pdfmake.server.ts`         | Nitro plugin — registers embedded fonts for server-side use                                           |
-| `module/src/runtime/composables/usePDFMake.ts` | Client composable (`null` on server)                                                                  |
-| `module/src/runtime/server/utils/pdfmake.ts`   | Server utilities: `useServerPDFMake`, `createPDFBuffer`, `createPDFBase64`                            |
-| `module/src/runtime/server/routes/pdf.ts`      | Pre-built `POST /_pdfmake/generate` handler                                                           |
-| `module/src/runtime/devtools/handler.ts`       | DevTools UI served at `/_pdfmake/devtools`                                                            |
-| `playground/app/pages/editor.vue`       | Live split-pane PDF editor                                                                            |
+| `src/module.ts`                         | Module entry — options, async font processing, virtual module generation, plugin/handler registration |
+| `src/runtime/pdfmake.client.ts`         | Client plugin — imports pdfmake from npm, registers embedded fonts                                    |
+| `src/runtime/pdfmake.server.ts`         | Nitro plugin — registers embedded fonts for server-side use                                           |
+| `src/runtime/composables/usePDFMake.ts` | Client composable (`null` on server)                                                                  |
+| `src/runtime/server/utils/pdfmake.ts`   | Server utilities: `useServerPDFMake`, `createPDFBuffer`, `createPDFBase64`                            |
+| `src/runtime/server/routes/pdf.ts`      | Pre-built `POST /_pdfmake/generate` handler                                                           |
+| `src/runtime/devtools/handler.ts`       | DevTools UI served at `/_pdfmake/devtools`                                                            |
+| `docs/` | Documentation site (Nuxt Content, own `package.json` + `bun.lock`); loads the module from `../src/module` |
 
 ## Virtual font module (`#pdfmake-fonts`)
 
@@ -47,20 +46,38 @@ Both `pdfmake.client.ts` and `pdfmake.server.ts` import from this alias to keep 
 
 ## Formatting & Linting
 
-- **[oxfmt](https://oxc.rs/docs/guide/usage/formatter.html)** — formatter (`bun run format` → `oxfmt --write .`)
-- **[oxlint](https://oxc.rs/docs/guide/usage/linter.html)** — linter (`bun run lint` → `oxlint .`)
+- **[oxfmt](https://oxc.rs/docs/guide/usage/formatter.html)** — formatter (`bun run fmt` → `oxfmt`, `bun run fmt:check`)
+- **[oxlint](https://oxc.rs/docs/guide/usage/linter.html)** — linter (`bun run lint` → `oxlint src/ test/`)
 - **lint-staged** — runs both on staged files before each commit (configured in `package.json`)
+- **commitlint** — conventional commit messages enforced by `.husky/commit-msg`
 - Pre-commit hook: `.husky/pre-commit` runs `bunx lint-staged`
+
+## Repo layout
+
+The module lives at the repo root (`src/`, `test/`, `dist/` when built). `docs/` is a separate Bun project with its own `package.json` and `bun.lock`; it is the docs site and the local dev app, and imports the module straight from `../src/module`. Root `bun install` and `docs` `bun install` are independent. Run everything from the repo root.
 
 ## Development
 
 ```bash
 bun install
-bun run dev:prepare   # stub build + prepare playground
-bun run dev           # start playground dev server
-bun run test          # run vitest
-bun run prepack       # build the module dist/
+(cd docs && bun install)
+bun run dev            # stub-build module + docs dev server
+bun run dev:prepare    # stub-build module + generate .nuxt types (root and docs)
+bun run test           # vitest
+bun run test:types     # vue-tsc --noEmit
+bun run lint           # oxlint
+bun run fmt            # oxfmt
+bun run fmt:check      # oxfmt --check
+bun run prepack        # build module dist/
+bun run dev:build      # build the docs site only
+bun run netlify        # full Netlify build: install, stub build, docs build
+bun run clean          # delete node_modules/.nuxt/lockfiles, then reinstall
+bun run release        # lint + fmt:check + test + build, then changelogen --release + npm publish + git push --follow-tags
 ```
+
+## Deployment
+
+Docs deploy to Netlify via [netlify.toml](./netlify.toml) (`base = "docs"`, command `cd .. && bun run netlify`, publish `dist`).
 
 ## License
 

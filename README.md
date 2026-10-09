@@ -151,22 +151,15 @@ export default defineNuxtConfig({
 ```bash
 # Install dependencies
 bun install
+(cd docs && bun install)
 
-# Generate type stubs
-bun run dev:prepare
-
-# Develop with the playground
+# Run the docs site against the local module (stub build + docs dev server)
 bun run dev
 
-# Build the playground
-bun run dev:build
-
-# Run linter
+# Run linter / tests / type check
 bun run lint
-
-# Run tests
 bun run test
-bun run test:watch
+bun run test:types
 
 # Build the module
 bun run prepack

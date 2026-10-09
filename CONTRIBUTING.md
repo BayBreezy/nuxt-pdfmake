@@ -8,46 +8,44 @@ Use Bun from the repository root:
 
 ```sh
 bun install
-bun run dev:prepare
+(cd docs && bun install)
+bun run dev
 ```
 
-The repo is a Bun workspace:
-
-- `module` is the publishable Nuxt module package.
-- `playground` is the local development app.
-- `docs` is the documentation app.
+The module lives at the repo root (`src/`, `test/`). `docs/` is the documentation site and doubles as the local dev app; it loads the module from `../src/module` and has its own `package.json` and lockfile.
 
 ## Development
 
-Common commands:
+All commands run from the repository root:
 
 ```sh
-bun run dev          # playground
-bun run dev:docs     # docs app
-bun run test         # vitest
-bun run lint         # oxlint
-bun run format       # oxfmt
-bun run validate     # format check, lint, test, module build
+bun run dev            # stub-build the module, then start the docs dev server
+bun run test           # vitest
+bun run test:types     # vue-tsc
+bun run lint           # oxlint
+bun run fmt            # oxfmt
+bun run fmt:check      # oxfmt --check
+bun run prepack        # build module dist/
+bun run dev:build      # build the docs site
+bun run clean          # wipe node_modules/.nuxt/lockfiles and reinstall
 ```
-
-Dependencies shared by workspaces should be versioned through the root `workspaces.catalog` field and referenced with `catalog:` in package manifests.
 
 ## Pull Requests
 
 Keep changes focused. Include tests or docs when behavior changes. Before opening a PR, run:
 
 ```sh
-bun run validate
+bun run lint && bun run fmt:check && bun run test && bun run test:types
 ```
 
 Use Conventional Commit style for commit messages when practical, for example `feat: add server utility` or `fix: register fonts in nitro`.
 
 ## Releases
 
-Releases are handled from the `module` workspace with Changelogen and Bun:
+Releases are cut locally from `main` with Changelogen:
 
 ```sh
 bun run release
 ```
 
-Changelogen updates the root `CHANGELOG.md` and `module/package.json`. `bun publish` is used for npm publishing because it resolves `catalog:` dependencies before packing.
+This lints, checks formatting, runs the tests, builds the module, then runs `changelogen --release` (bumps the version, updates `CHANGELOG.md`, commits and tags), `npm publish` and `git push --follow-tags`.
