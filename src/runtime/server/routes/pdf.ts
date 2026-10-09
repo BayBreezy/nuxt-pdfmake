@@ -1,5 +1,7 @@
 import { createError, defineEventHandler, readBody, setHeader } from "h3";
 
+import { createPDFBuffer } from "../utils/pdfmake";
+
 /**
  * Pre-built PDF generation endpoint: POST /_pdfmake/generate
  *

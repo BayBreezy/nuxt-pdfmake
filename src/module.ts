@@ -1,6 +1,6 @@
 import { resolve } from "node:path";
 
-import { addCustomTab } from "@nuxt/devtools-kit";
+import { onDevtoolsReady, NUXT_DEVTOOLS_GROUP_ID } from "@nuxt/devtools-kit";
 import {
   addImports,
   addPlugin,
@@ -137,14 +137,15 @@ export default defineNuxtModule<ModuleOptions>({
     };
     (nuxt.options.runtimeConfig as Record<string, unknown>).pdfmakeDevtools = pdfmakeDevtools;
 
-    addCustomTab({
-      name: "pdfmake",
-      title: "PDFMake",
-      icon: "i-vscode-icons-file-type-pdf2",
-      view: {
+    onDevtoolsReady((ctx) => {
+      ctx.docks.register({
+        id: "pdfmake",
+        title: "PDFMake",
+        icon: "i-vscode-icons-file-type-pdf2",
         type: "iframe",
-        src: "/_pdfmake/devtools",
-      },
+        url: "/_pdfmake/devtools",
+        groupId: NUXT_DEVTOOLS_GROUP_ID,
+      });
     });
 
     addServerHandler({
