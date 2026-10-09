@@ -17,7 +17,6 @@
     "build": "nuxi build",
     "dev": "nuxi dev --host",
     "generate": "nuxi generate",
-    "postinstall": "nuxi prepare",
     "preview": "nuxi preview"
   },
   "dependencies": {
