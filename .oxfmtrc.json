@@ -17,8 +17,6 @@
     "dist/**",
     ".nuxt/**",
     "node_modules/**",
-    "playground/.nuxt/**",
-    "playground/node_modules/**",
     "docs/.nuxt/**",
     "docs/node_modules/**",
     "**/*.md",

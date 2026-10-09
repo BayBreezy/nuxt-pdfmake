@@ -11,27 +11,27 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  validate:
+  ci:
     name: Validate
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.4.2
 
       - name: Install dependencies
         run: bun install --frozen-lockfile
 
-      - name: Lint
-        run: bun run lint
+      - name: Install docs dependencies
+        run: bun install --frozen-lockfile
+        working-directory: docs
 
-      - name: Prepare
+      - name: Prepare (stub build + generate .nuxt/tsconfig.json)
         run: bun run dev:prepare
 
-      - name: Test
-        run: bun run test
-
-      - name: Build module
-        run: bun run prepack
+      - name: Check (lint, format, test, types, build)
+        run: bun run ci:check

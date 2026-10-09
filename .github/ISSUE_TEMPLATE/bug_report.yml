@@ -49,7 +49,7 @@ body:
         - Client
         - Server/Nitro
         - Build/dev server
-        - Docs/playground
+        - Docs
     validations:
       required: true
   - type: textarea
