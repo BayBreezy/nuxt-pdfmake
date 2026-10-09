@@ -5,7 +5,7 @@ import { join } from "node:path";
 import { logger } from "@nuxt/kit";
 import { afterEach, describe, expect, it, vi } from "vitest";
 
-import type { ProcessedFonts } from "../module/src/types";
+import type { ProcessedFonts } from "../src/types";
 import {
   calculateEmbeddedFontSizeKB,
   createPdfmakeFontsTemplate,
@@ -13,7 +13,7 @@ import {
   normalizeGoogleFontId,
   resolveGoogleFont,
   resolvePdfmakeFontVariantFallbacks,
-} from "../module/src/utils/fonts";
+} from "../src/utils/fonts";
 
 const ttfBuffer = Buffer.from([0x00, 0x01, 0x00, 0x00, 0x66, 0x61, 0x6b, 0x65]);
 
