@@ -1,4 +1,6 @@
-const url = process.env.NUXT_SITE_URL || "http://localhost:3000";
+import NuxtPDFMake from "../src/module";
+
+const url = process.env.NUXT_SITE_URL || "https://nuxt-pdfmake.behonbaker.com";
 const name = process.env.NUXT_SITE_NAME || "Nuxt PDFMake";
 const description = "Easily add pdfMake to your Nuxt application";
 const locale = "en";
@@ -6,7 +8,7 @@ const locale = "en";
 export default defineNuxtConfig({
   devtools: { enabled: true },
   extends: ["@baybreezy/docd"],
-  modules: ["nuxt-pdfmake", "@vite-pwa/nuxt"],
+  modules: [NuxtPDFMake, "@vite-pwa/nuxt"],
   llms: {
     domain: url,
     title: name,
@@ -64,6 +66,12 @@ export default defineNuxtConfig({
     optimizeDeps: {
       include: ["@faker-js/faker"],
     },
+  },
+  site: {
+    name,
+    url,
+    description,
+    defaultLocale: locale,
   },
   compatibilityDate: "latest",
 });

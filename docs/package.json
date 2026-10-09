@@ -1,31 +1,34 @@
 {
   "name": "nuxt-pdfmake-docs",
+  "version": "0.0.1",
   "private": true,
   "keywords": [
     "nuxt",
     "pdfmake"
   ],
   "license": "MIT",
+  "author": {
+    "name": "Behon Baker",
+    "email": "behon.baker@yahoo.com",
+    "url": "https://behonbaker.com"
+  },
   "type": "module",
   "scripts": {
-    "build": "NODE_OPTIONS=--max-old-space-size=7120 nuxt build",
-    "clean": "rm -rf .data .nuxt .output node_modules dist bun.lock && bun i && bun pm trust --all",
-    "dev": "nuxt dev --host",
-    "format": "oxfmt",
-    "generate": "nuxt generate",
-    "nuxt:prepare": "nuxt prepare",
-    "prepare": "nuxt prepare",
-    "preview": "nuxt preview"
+    "build": "nuxi build",
+    "dev": "nuxi dev --host",
+    "generate": "nuxi generate",
+    "postinstall": "nuxi prepare",
+    "preview": "nuxi preview"
   },
   "dependencies": {
     "@baybreezy/docd": "latest",
-    "@faker-js/faker": "^10.4.0",
+    "@faker-js/faker": "^10.6.0",
     "@vite-pwa/nuxt": "^1.1.1",
-    "nuxt": "^4.4.4",
-    "nuxt-pdfmake": "^0.1.1",
-    "vue": "^3.5.33",
-    "vue-router": "5.0.6"
+    "nuxt": "^4.6.0",
+    "vue": "^3.5.43",
+    "vue-router": "5.4.0"
   },
+  "packageManager": "bun@1.4.2",
   "trustedDependencies": [
     "@morev/vue-transitions",
     "@parcel/watcher",
