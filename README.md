@@ -4,6 +4,10 @@
 [![npm downloads][npm-downloads-src]][npm-downloads-href]
 [![License][license-src]][license-href]
 [![Nuxt][nuxt-src]][nuxt-href]
+[![CI][ci-src]][ci-href]
+[![Last commit][last-commit-src]][last-commit-href]
+[![Package size][package-size-src]][package-size-href]
+[![Conventional Commits][conventional-commits-src]][conventional-commits-href]
 
 Easily add <a target="_blank" href="http://pdfmake.org/#/">pdfMake</a> to your Nuxt application.
 
@@ -178,3 +182,11 @@ bun run release
 [license-href]: https://npmjs.com/package/nuxt-pdfmake
 [nuxt-src]: https://img.shields.io/badge/Nuxt-18181B?logo=nuxt.js
 [nuxt-href]: https://nuxt.com
+[ci-src]: https://img.shields.io/github/actions/workflow/status/BayBreezy/nuxt-pdfmake/ci.yml?branch=main&label=CI&style=flat&colorA=18181B
+[ci-href]: https://github.com/BayBreezy/nuxt-pdfmake/actions/workflows/ci.yml
+[last-commit-src]: https://img.shields.io/github/last-commit/BayBreezy/nuxt-pdfmake?style=flat&colorA=18181B&colorB=28CF8D
+[last-commit-href]: https://github.com/BayBreezy/nuxt-pdfmake/commits/main
+[package-size-src]: https://img.shields.io/npm/unpacked-size/nuxt-pdfmake?style=flat&colorA=18181B&colorB=28CF8D&label=package%20size
+[package-size-href]: https://www.npmjs.com/package/nuxt-pdfmake
+[conventional-commits-src]: https://img.shields.io/badge/Conventional%20Commits-1.0.0-28CF8D?style=flat&colorA=18181B
+[conventional-commits-href]: https://conventionalcommits.org
