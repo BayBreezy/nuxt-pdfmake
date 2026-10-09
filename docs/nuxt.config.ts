@@ -64,6 +64,9 @@ export default defineNuxtConfig({
   },
   nitro: {
     prerender: {
+      // Write /examples/basic.html (not /examples/basic/index.html) so Netlify serves the
+      // slashless URLs used by canonical tags, the sitemap and llms.txt without a 301
+      autoSubfolderIndex: false,
       // The sitemap is a server route; prerender it so the static build ships /sitemap.xml
       routes: ["/sitemap.xml"],
     },
