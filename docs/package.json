@@ -27,6 +27,9 @@
     "vue": "^3.5.43",
     "vue-router": "5.4.0"
   },
+  "devDependencies": {
+    "node-gyp": "^11.5.0"
+  },
   "packageManager": "bun@1.4.2",
   "trustedDependencies": [
     "@morev/vue-transitions",
@@ -35,8 +38,5 @@
     "esbuild",
     "sharp",
     "vue-demi"
-  ],
-  "devDependencies": {
-    "node-gyp": "^11.5.0"
-  }
+  ]
 }
