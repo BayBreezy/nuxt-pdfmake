@@ -18,7 +18,11 @@ iframe:
 primaryCta:
   label: Get started
   href: /introduction/introduction
-browserFrameUrl: https://nuxt-pdfmake.com
+  icon: lucide:rocket
+secondaryCta:
+  label: View on GitHub
+  href: https://github.com/BayBreezy/nuxt-pdfmake
+  icon: simple-icons:github
 description: PDFMake is a powerful and flexible library for generating PDFs in JavaScript. With Nuxt PDFMake, you can easily integrate PDFMake into your Nuxt application and start generating PDFs with ease.
 headline: Generate PDFs with ease
 siteName: Nuxt PDFMake
