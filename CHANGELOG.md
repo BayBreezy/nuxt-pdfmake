@@ -1,5 +1,46 @@
 # Changelog
 
+## v0.1.3
+
+[compare changes](https://github.com/BayBreezy/nuxt-pdfmake/compare/v0.1.2...v0.1.3)
+
+### 🚀 Enhancements
+
+- **fonts:** Add fonts.nuxtFonts to reuse families resolved by @nuxt/fonts ([68ae5b6](https://github.com/BayBreezy/nuxt-pdfmake/commit/68ae5b6))
+- **devtools:** Show Nuxt Fonts families, add a font picker, and restyle the panel ([9bb3d5d](https://github.com/BayBreezy/nuxt-pdfmake/commit/9bb3d5d))
+
+### 🩹 Fixes
+
+- **docs:** Add node-gyp devDependency so better-sqlite3 installs on Netlify ([19bf7da](https://github.com/BayBreezy/nuxt-pdfmake/commit/19bf7da))
+- **docs:** Drop postinstall nuxi prepare that breaks Netlify's docs-only install ([ba04339](https://github.com/BayBreezy/nuxt-pdfmake/commit/ba04339))
+- **docs:** Generate the docs statically for Netlify instead of deploying an SSR function ([bb05141](https://github.com/BayBreezy/nuxt-pdfmake/commit/bb05141))
+- **docs:** Prerender /sitemap.xml so the static build ships it ([9aec8b1](https://github.com/BayBreezy/nuxt-pdfmake/commit/9aec8b1))
+- **docs:** Generate slashless page files so Netlify serves canonical URLs without a 301 ([a632e2c](https://github.com/BayBreezy/nuxt-pdfmake/commit/a632e2c))
+- Silence harmless pdfmake annotation warnings in Nitro builds ([2a45fb3](https://github.com/BayBreezy/nuxt-pdfmake/commit/2a45fb3))
+- Use addNitroPlugin and type useServerPDFMake without the global augmentation ([853232f](https://github.com/BayBreezy/nuxt-pdfmake/commit/853232f))
+- **docs:** Pin mdast-util-to-markdown to avoid a stack overflow in llms-full.txt ([8328448](https://github.com/BayBreezy/nuxt-pdfmake/commit/8328448))
+
+### 📖 Documentation
+
+- Document nuxtFonts and bring the guides in line with the module ([ff29132](https://github.com/BayBreezy/nuxt-pdfmake/commit/ff29132))
+- Add a GitHub link and icons to the landing hero ([e829dba](https://github.com/BayBreezy/nuxt-pdfmake/commit/e829dba))
+- Serve the docs fonts through @nuxt/fonts ([bbda532](https://github.com/BayBreezy/nuxt-pdfmake/commit/bbda532))
+
+### 🏡 Chore
+
+- **docs:** Add dev:preview to serve the statically generated docs locally ([d5b3d0f](https://github.com/BayBreezy/nuxt-pdfmake/commit/d5b3d0f))
+- Bump deps ([49a007f](https://github.com/BayBreezy/nuxt-pdfmake/commit/49a007f))
+- Add a cSpell config for project terms ([0870141](https://github.com/BayBreezy/nuxt-pdfmake/commit/0870141))
+- Bump Bun to 1.4.3 on Netlify and build the docs with dev:build ([7cee019](https://github.com/BayBreezy/nuxt-pdfmake/commit/7cee019))
+
+### 🎨 Styles
+
+- **docs:** Format docs/package.json ([444e9d0](https://github.com/BayBreezy/nuxt-pdfmake/commit/444e9d0))
+
+### ❤️ Contributors
+
+- Behon Baker ([@BayBreezy](https://github.com/BayBreezy))
+
 ## v0.1.2
 
 [compare changes](https://github.com/BayBreezy/nuxt-pdfmake/compare/v0.1.1...v0.1.2)
