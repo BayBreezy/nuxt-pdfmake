@@ -4,10 +4,10 @@ import { resolve } from "node:path";
 import { onDevtoolsReady, NUXT_DEVTOOLS_GROUP_ID } from "@nuxt/devtools-kit";
 import {
   addImports,
+  addNitroPlugin,
   addPlugin,
   addServerHandler,
   addServerImportsDir,
-  addServerPlugin,
   addTemplate,
   createResolver,
   defineNuxtModule,
@@ -246,7 +246,7 @@ export default defineNuxtModule<ModuleOptions>({
     nuxt.options.alias["#pdfmake-fonts"] = resolve(nuxt.options.buildDir, "pdfmake-fonts.mjs");
 
     addPlugin(resolver.resolve("./runtime/pdfmake.client"));
-    addServerPlugin(resolver.resolve("./runtime/pdfmake.server"));
+    addNitroPlugin(resolver.resolve("./runtime/pdfmake.server"));
 
     // The server plugin bundles pdfmake's prebuilt file, which makes Rollup log dozens of harmless warnings.
     // The prerenderer builds its own Nitro instance, so it needs the same wrapper.

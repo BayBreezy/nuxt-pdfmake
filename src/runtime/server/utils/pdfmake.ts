@@ -1,4 +1,5 @@
 import { useNitroApp } from "nitropack/runtime";
+import type { NitroApp } from "nitropack/types";
 import type { TDocumentDefinitions } from "pdfmake/interfaces";
 
 declare module "nitropack/types" {
@@ -8,7 +9,9 @@ declare module "nitropack/types" {
 }
 
 export function useServerPDFMake() {
-  return useNitroApp().$pdfMake;
+  // Cast locally so this doesn't depend on the module augmentation above being picked up
+  return (useNitroApp() as NitroApp & { $pdfMake: typeof import("pdfmake/build/pdfmake") })
+    .$pdfMake;
 }
 
 /**
