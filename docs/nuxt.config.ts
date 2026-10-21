@@ -58,9 +58,17 @@ export default defineNuxtConfig({
 
   pdfmake: {
     fonts: {
-      useDefaultRoboto: true,
-      googleFonts: ["Inter", "Merriweather", "Montserrat", "Nunito", "Playfair Display"],
+      nuxtFonts: true,
     },
+  },
+  fonts: {
+    families: [
+      { name: "Inter", global: true },
+      { name: "Merriweather", global: true },
+      { name: "Montserrat", global: true },
+      { name: "Nunito", global: true, weights: [400, 700] },
+      { name: "Playfair Display", global: true },
+    ],
   },
   nitro: {
     prerender: {

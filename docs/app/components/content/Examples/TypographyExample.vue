@@ -195,7 +195,7 @@ const loadPdf = async () => {
 
         { text: "9. Font Families", style: "sectionTitle" },
         {
-          text: "These Google Fonts are embedded at build time via the googleFonts option in nuxt.config. Each row shows normal, bold, and italic variants.",
+          text: "These families are resolved by @nuxt/fonts and registered through the nuxtFonts option, so the font files are fetched only when the PDF is created. Each row shows normal, bold, and italic variants.",
           style: "bodyText",
           marginBottom: 10,
         },
