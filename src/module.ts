@@ -18,6 +18,7 @@ import {
 } from "@nuxt/kit";
 import type { ModuleDependencies } from "@nuxt/schema";
 import { defu } from "defu";
+import type { Nitro } from "nitropack/types";
 
 import { name, version } from "../package.json";
 import type {
@@ -36,6 +37,7 @@ import {
   processGoogleFonts,
   resolveUseDefaultRoboto,
 } from "./utils/fonts";
+import { withoutPdfmakeAnnotationWarnings } from "./utils/nitro-warnings";
 import {
   getNuxtFontsDependencyDefaults,
   mergeResolvedNuxtFont,
@@ -245,6 +247,18 @@ export default defineNuxtModule<ModuleOptions>({
 
     addPlugin(resolver.resolve("./runtime/pdfmake.client"));
     addServerPlugin(resolver.resolve("./runtime/pdfmake.server"));
+
+    // The server plugin bundles pdfmake's prebuilt file, which makes Rollup log dozens of harmless warnings.
+    // The prerenderer builds its own Nitro instance, so it needs the same wrapper.
+    const muteAnnotationWarnings = (nitro: Pick<Nitro, "hooks">) => {
+      nitro.hooks.hook("rollup:before", (_nitro, config) => {
+        config.onwarn = withoutPdfmakeAnnotationWarnings(config.onwarn as never) as never;
+      });
+    };
+    nuxt.hook("nitro:init", (nitro) => {
+      muteAnnotationWarnings(nitro);
+      nitro.hooks.hook("prerender:init", muteAnnotationWarnings);
+    });
 
     if (options.enableComposable) {
       addImports({

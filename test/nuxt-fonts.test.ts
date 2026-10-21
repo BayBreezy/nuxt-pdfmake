@@ -3,6 +3,7 @@ import { describe, expect, it, vi } from "vitest";
 
 import { mergeFontDescriptors, resolveRuntimeFontUrl } from "../src/runtime/utils/fonts";
 import type { NuxtFontFaceData, ResolvedNuxtFontDetails } from "../src/types";
+import { withoutPdfmakeAnnotationWarnings } from "../src/utils/nitro-warnings";
 import {
   getNuxtFontsDependencyDefaults,
   mergeResolvedNuxtFont,
@@ -183,5 +184,23 @@ describe("@nuxt/fonts mapping", () => {
     expect(getNuxtFontsDependencyDefaults({ fonts: { nuxtFonts: false } }, undefined)).toEqual({});
     expect(getNuxtFontsDependencyDefaults(undefined, undefined)).toEqual({});
     expect(getNuxtFontsDependencyDefaults({ enabled: false, ...on }, undefined)).toEqual({});
+  });
+
+  it("drops only pdfmake annotation warnings and keeps the wrapped handler for the rest", () => {
+    const original = vi.fn();
+    const fallback = vi.fn();
+    const onwarn = withoutPdfmakeAnnotationWarnings(original);
+    const pdfmakeId = "/app/node_modules/pdfmake/build/pdfmake.js";
+
+    onwarn({ code: "INVALID_ANNOTATION", id: pdfmakeId }, fallback);
+    expect(original).not.toHaveBeenCalled();
+
+    const other = { code: "INVALID_ANNOTATION", id: "/app/node_modules/other/index.js" };
+    onwarn(other, fallback);
+    expect(original).toHaveBeenCalledWith(other, fallback);
+
+    const unwrapped = withoutPdfmakeAnnotationWarnings(undefined);
+    unwrapped(other, fallback);
+    expect(fallback).toHaveBeenCalledWith(other);
   });
 });
