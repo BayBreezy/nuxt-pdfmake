@@ -30,6 +30,9 @@
   "devDependencies": {
     "node-gyp": "^13.1.0"
   },
+  "overrides": {
+    "mdast-util-to-markdown": "2.1.2"
+  },
   "packageManager": "bun@1.4.3",
   "trustedDependencies": [
     "@morev/vue-transitions",
