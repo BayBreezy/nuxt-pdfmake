@@ -270,7 +270,8 @@ export default defineNuxtModule<ModuleOptions>({
       });
     }
 
-    if (!options.enableDevtools) return;
+    // DevTools only exist while developing; don't ship the panel route in production builds
+    if (!options.enableDevtools || !isDev) return;
 
     const pdfmakeDevtools: PdfmakeDevtoolsRuntimeConfig = {
       embedded: Object.keys(processedFonts.descriptors),
@@ -284,7 +285,20 @@ export default defineNuxtModule<ModuleOptions>({
     };
     (nuxt.options.runtimeConfig as Record<string, unknown>).pdfmakeDevtools = pdfmakeDevtools;
 
+    // Nuxt DevTools v3 (bundled with Nuxt 4) reads `devtools:customTabs`; v4 emits `devtools:ready`
+    // and registers docks. Register through whichever one fires, never both.
+    let registeredCustomTab = false;
+    nuxt.hook("devtools:customTabs", (tabs) => {
+      registeredCustomTab = true;
+      tabs.push({
+        name: "pdfmake",
+        title: "PDFMake",
+        icon: "i-vscode-icons-file-type-pdf2",
+        view: { type: "iframe", src: "/_pdfmake/devtools" },
+      });
+    });
     onDevtoolsReady((ctx) => {
+      if (registeredCustomTab) return;
       ctx.docks.register({
         id: "pdfmake",
         title: "PDFMake",
