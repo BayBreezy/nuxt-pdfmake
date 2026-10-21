@@ -1,0 +1,26 @@
+{
+  "$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json",
+  "version": "0.2",
+  "language": "en",
+  "words": [
+    "baybreezy",
+    "defu",
+    "docd",
+    "fontkit",
+    "fontless",
+    "llms",
+    "merriweather",
+    "nitropack",
+    "nunito",
+    "onwarn",
+    "oxfmt",
+    "oxlint",
+    "pdfmake",
+    "playfair",
+    "slashless",
+    "unifont",
+    "vfs",
+    "woff"
+  ],
+  "ignorePaths": ["node_modules", "dist", ".nuxt", "docs/.nuxt", "docs/.output", "bun.lock"]
+}
