@@ -1,3 +1,4 @@
+import { mkdir, rm, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
 
 import { onDevtoolsReady, NUXT_DEVTOOLS_GROUP_ID } from "@nuxt/devtools-kit";
@@ -10,20 +11,36 @@ import {
   addTemplate,
   createResolver,
   defineNuxtModule,
+  hasNuxtModule,
+  hasNuxtModuleCompatibility,
   logger,
   addServerTemplate,
 } from "@nuxt/kit";
+import type { ModuleDependencies } from "@nuxt/schema";
 import { defu } from "defu";
 
 import { name, version } from "../package.json";
-import type { ModuleOptions, PdfmakeDevtoolsRuntimeConfig, ProcessedFonts } from "./types";
+import type {
+  ModuleOptions,
+  NuxtFontClientManifest,
+  NuxtFontServerManifest,
+  PdfmakeDevtoolsRuntimeConfig,
+  ProcessedFonts,
+  ResolvedNuxtFontDetails,
+} from "./types";
 import {
   calculateEmbeddedFontSizeKB,
   createPdfmakeFontsTemplate,
   getFontSizeMapKB,
   processCustomFonts,
   processGoogleFonts,
+  resolveUseDefaultRoboto,
 } from "./utils/fonts";
+import {
+  getNuxtFontsDependencyDefaults,
+  mergeResolvedNuxtFont,
+  selectNuxtFonts,
+} from "./utils/nuxt-fonts";
 
 export type { ModuleOptions } from "./types";
 export {
@@ -37,6 +54,7 @@ export {
   resolveGoogleFont,
   resolveGoogleFontVariantUrl,
   resolvePdfmakeFontVariantFallbacks,
+  resolveUseDefaultRoboto,
 } from "./utils/fonts";
 
 export default defineNuxtModule<ModuleOptions>({
@@ -51,6 +69,14 @@ export default defineNuxtModule<ModuleOptions>({
     enableComposable: true,
     enableDevtools: true,
     enableApiRoute: undefined, // resolved to process.env.NODE_ENV !== 'production'
+  },
+  // Runs before any module is set up, so it works whatever the order in `modules`.
+  moduleDependencies: (nuxt): ModuleDependencies => {
+    const config = nuxt.options as unknown as Record<string, unknown>;
+    return getNuxtFontsDependencyDefaults(
+      config.pdfmake as Parameters<typeof getNuxtFontsDependencyDefaults>[0],
+      config.fonts as Parameters<typeof getNuxtFontsDependencyDefaults>[1],
+    );
   },
   async setup(options, nuxt) {
     if (!options.enabled) {
@@ -78,6 +104,101 @@ export default defineNuxtModule<ModuleOptions>({
     processCustomFonts(options.fonts?.custom, nuxt.options.rootDir, processedFonts);
     await processGoogleFonts(options.fonts?.googleFonts, nuxt.options.buildDir, processedFonts);
 
+    const nuxtFontsEnabled = options.fonts?.nuxtFonts === true;
+    // `fonts:resolved` is declared by @nuxt/fonts, an optional peer, so it isn't in our hook types.
+    const onFontsResolved = (listener: (font: ResolvedNuxtFontDetails) => void) =>
+      nuxt.hook("fonts:resolved" as never, listener as never);
+    const resolvedNuxtFonts = new Map<string, ResolvedNuxtFontDetails>();
+    let nuxtFontClientManifest: NuxtFontClientManifest = { version: 1, fonts: {} };
+    let nuxtFontServerManifest: NuxtFontServerManifest = { fonts: {}, files: {} };
+
+    if (nuxtFontsEnabled) {
+      const nuxtFontAssetsDir = resolve(nuxt.options.buildDir, "pdfmake-nuxt-fonts");
+      // Only holds manifest.json; the font files themselves are served by @nuxt/fonts.
+      const publicAssetsDir = resolve(nuxtFontAssetsDir, "public");
+      const serverAssetsDir = resolve(nuxtFontAssetsDir, "server");
+
+      onFontsResolved((font) => {
+        resolvedNuxtFonts.set(
+          font.fontFamily,
+          mergeResolvedNuxtFont(resolvedNuxtFonts.get(font.fontFamily), font),
+        );
+      });
+
+      nuxt.hook("modules:done", async () => {
+        if (!hasNuxtModule("@nuxt/fonts", nuxt)) {
+          throw new Error(
+            "[nuxt-pdfmake] fonts.nuxtFonts requires @nuxt/fonts to be registered in the Nuxt modules array.",
+          );
+        }
+        if (!(await hasNuxtModuleCompatibility("@nuxt/fonts", ">=1.0.0", nuxt))) {
+          throw new Error("[nuxt-pdfmake] fonts.nuxtFonts requires @nuxt/fonts v1.0.0 or newer.");
+        }
+      });
+
+      nuxt.hook("nitro:config", (nitroConfig) => {
+        nitroConfig.publicAssets ||= [];
+        nitroConfig.publicAssets.push({
+          dir: publicAssetsDir,
+          baseURL: "/_pdfmake/fonts",
+          maxAge: 0,
+        });
+        nitroConfig.serverAssets ||= [];
+        nitroConfig.serverAssets.push({
+          dir: serverAssetsDir,
+          baseName: "pdfmake-fonts",
+        });
+      });
+
+      nuxt.hook("nitro:build:before", async () => {
+        await rm(nuxtFontAssetsDir, { recursive: true, force: true });
+        await Promise.all([
+          mkdir(publicAssetsDir, { recursive: true }),
+          mkdir(serverAssetsDir, { recursive: true }),
+        ]);
+
+        const selected = selectNuxtFonts(resolvedNuxtFonts.values());
+        nuxtFontClientManifest = selected.client;
+        nuxtFontServerManifest = selected.server;
+
+        const unpackagedFamilies = [...resolvedNuxtFonts.keys()].filter(
+          (family) => !selected.client.fonts[family],
+        );
+        if (!nuxt.options.dev && unpackagedFamilies.length > 0) {
+          throw new Error(
+            `[nuxt-pdfmake] Could not package these @nuxt/fonts families because they have no URL-backed font faces: ${unpackagedFamilies.join(", ")}.`,
+          );
+        }
+
+        if (resolvedNuxtFonts.size === 0) {
+          logger.warn(
+            "[nuxt-pdfmake] fonts.nuxtFonts is enabled, but @nuxt/fonts did not resolve any families. Configure PDF-only families with global: true.",
+          );
+        }
+
+        await Promise.all(
+          [...selected.files].map(async ([assetName, file]) => {
+            let contents: Buffer;
+            try {
+              contents = await file.readFont();
+            } catch (error) {
+              throw new Error(
+                `[nuxt-pdfmake] Failed to package @nuxt/fonts asset "${file.url}": ${error instanceof Error ? error.message : String(error)}`,
+                { cause: error },
+              );
+            }
+            await writeFile(resolve(serverAssetsDir, assetName), contents);
+          }),
+        );
+
+        await writeFile(
+          resolve(publicAssetsDir, "manifest.json"),
+          JSON.stringify(nuxtFontClientManifest),
+          "utf8",
+        );
+      });
+    }
+
     const embeddedKB = calculateEmbeddedFontSizeKB(processedFonts.sizes);
     if (embeddedKB > 0) {
       logger.warn(
@@ -89,18 +210,36 @@ export default defineNuxtModule<ModuleOptions>({
     const hasAnyFont =
       Object.keys(processedFonts.descriptors).length > 0 ||
       Object.keys(options.fonts?.cdn ?? {}).length > 0;
-    const useDefaultRoboto = options.fonts?.useDefaultRoboto ?? !hasAnyFont;
+    const useDefaultRoboto = resolveUseDefaultRoboto(options.fonts?.useDefaultRoboto, hasAnyFont);
 
     addTemplate({
       filename: "pdfmake-fonts.mjs",
       write: true,
       getContents: () =>
-        createPdfmakeFontsTemplate(processedFonts, options.fonts?.cdn, useDefaultRoboto),
+        createPdfmakeFontsTemplate(
+          processedFonts,
+          options.fonts?.cdn,
+          useDefaultRoboto,
+          nuxtFontsEnabled,
+        ),
     });
     addServerTemplate({
       filename: "pdfmake-fonts.mjs",
       getContents: () =>
-        createPdfmakeFontsTemplate(processedFonts, options.fonts?.cdn, useDefaultRoboto),
+        createPdfmakeFontsTemplate(
+          processedFonts,
+          options.fonts?.cdn,
+          useDefaultRoboto,
+          nuxtFontsEnabled,
+        ),
+    });
+    addServerTemplate({
+      filename: "#pdfmake-nuxt-fonts",
+      getContents: () =>
+        [
+          `export const nuxtFontClientManifest = ${JSON.stringify(nuxtFontClientManifest)};`,
+          `export const nuxtFontServerManifest = ${JSON.stringify(nuxtFontServerManifest)};`,
+        ].join("\n"),
     });
     nuxt.options.alias["#pdfmake-fonts"] = resolve(nuxt.options.buildDir, "pdfmake-fonts.mjs");
 
@@ -124,12 +263,20 @@ export default defineNuxtModule<ModuleOptions>({
       });
     }
 
+    if (nuxtFontsEnabled && isDev) {
+      addServerHandler({
+        route: "/_pdfmake/fonts/manifest.json",
+        handler: resolver.resolve("./runtime/server/routes/fonts"),
+      });
+    }
+
     if (!options.enableDevtools) return;
 
     const pdfmakeDevtools: PdfmakeDevtoolsRuntimeConfig = {
       embedded: Object.keys(processedFonts.descriptors),
       cdn: Object.keys(options.fonts?.cdn ?? {}),
       googleFonts: options.fonts?.googleFonts ?? [],
+      nuxtFonts: nuxtFontsEnabled,
       fontSizesKB: getFontSizeMapKB(processedFonts.sizes),
       embeddedKB,
       useDefaultRoboto,

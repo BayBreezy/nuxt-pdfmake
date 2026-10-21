@@ -48,6 +48,17 @@ export interface ModuleOptions {
      */
     googleFonts?: string[];
     /**
+     * Import font families resolved by `@nuxt/fonts`.
+     *
+     * Font files are exposed as runtime assets instead of being embedded in the
+     * client bundle. Families used only for PDFs should be configured with
+     * `global: true` in `@nuxt/fonts` so they resolve deterministically.
+     *
+     * Requires `@nuxt/fonts` v1 or newer to be registered as a Nuxt module.
+     * @default false
+     */
+    nuxtFonts?: boolean;
+    /**
      * CDN or HTTP font URLs passed directly to pdfmake.
      * Fetched at PDF-creation time on the client.
      *
@@ -85,8 +96,48 @@ export interface PdfmakeDevtoolsRuntimeConfig {
   embedded: string[];
   cdn: string[];
   googleFonts: string[];
+  /** Whether `fonts.nuxtFonts` is on; the families are read from the generated manifest. */
+  nuxtFonts: boolean;
   fontSizesKB: FontSizeMap;
   embeddedKB: number;
   useDefaultRoboto: boolean;
   apiEnabled: boolean;
+}
+
+export interface NuxtFontSource {
+  name?: string;
+  url?: string;
+  format?: string;
+}
+
+export interface NuxtFontFaceData {
+  src: NuxtFontSource[];
+  weight?: string | number | [number, number];
+  style?: string;
+  unicodeRange?: string[];
+  meta?: {
+    subset?: string;
+    priority?: number;
+  };
+}
+
+export interface ResolvedNuxtFontFile {
+  url: string;
+  readFont: () => Promise<Buffer>;
+}
+
+export interface ResolvedNuxtFontDetails {
+  fontFamily: string;
+  fonts: NuxtFontFaceData[];
+  files: ResolvedNuxtFontFile[];
+}
+
+export interface NuxtFontClientManifest {
+  version: 1;
+  fonts: FontDescriptors;
+}
+
+export interface NuxtFontServerManifest {
+  fonts: FontDescriptors;
+  files: Record<string, string>;
 }

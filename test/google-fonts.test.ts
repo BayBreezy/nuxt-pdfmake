@@ -13,6 +13,7 @@ import {
   normalizeGoogleFontId,
   resolveGoogleFont,
   resolvePdfmakeFontVariantFallbacks,
+  resolveUseDefaultRoboto,
 } from "../src/utils/fonts";
 
 const ttfBuffer = Buffer.from([0x00, 0x01, 0x00, 0x00, 0x66, 0x61, 0x6b, 0x65]);
@@ -59,6 +60,16 @@ describe("Google Fonts TTF downloads", () => {
     expect(createPdfmakeFontsTemplate(processed, undefined, true)).toContain(
       'export const fontDescriptors = {"Example":{"normal":"Example-normal.ttf"}};',
     );
+    expect(createPdfmakeFontsTemplate(processed, undefined, true)).toContain(
+      "export const nuxtFontsEnabled = false;",
+    );
+  });
+
+  it("enables default Roboto only when no other font is configured, unless set explicitly", () => {
+    expect(resolveUseDefaultRoboto(undefined, false)).toBe(true);
+    expect(resolveUseDefaultRoboto(undefined, true)).toBe(false);
+    expect(resolveUseDefaultRoboto(true, true)).toBe(true);
+    expect(resolveUseDefaultRoboto(false, false)).toBe(false);
   });
 
   it("downloads Lato TrueType variants into the VFS descriptor shape", async () => {

@@ -1,8 +1,13 @@
-import { defineNitroPlugin } from "nitropack/runtime";
+import { Buffer } from "node:buffer";
+
+import { defineNitroPlugin, useStorage } from "nitropack/runtime";
 import pdfMake from "pdfmake/build/pdfmake";
 import type { TFontFamilyTypes } from "pdfmake/interfaces";
 
 import { cdnFonts, fontDescriptors, fontVfs, useDefaultRoboto } from "#pdfmake-fonts";
+import { nuxtFontServerManifest } from "#pdfmake-nuxt-fonts";
+
+import { mergeFontDescriptors } from "./utils/fonts";
 
 declare module "nitropack/types" {
   interface NitroApp {
@@ -26,19 +31,27 @@ export default defineNitroPlugin(async (nitroApp) => {
     pdfMake.addVirtualFileSystem(vfsData);
   }
 
-  const allFonts = {
-    ...(fontDescriptors as Record<string, TFontFamilyTypes>),
-    ...(cdnFonts as Record<string, TFontFamilyTypes>),
-  };
-
-  if (useDefaultRoboto) {
-    (allFonts as Record<string, TFontFamilyTypes>).Roboto ??= {
-      normal: "Roboto-Regular.ttf",
-      bold: "Roboto-Medium.ttf",
-      italics: "Roboto-Italic.ttf",
-      bolditalics: "Roboto-MediumItalic.ttf",
-    };
+  const nuxtFontVfs: Record<string, string> = {};
+  const fontAssetStorage = useStorage("assets:pdfmake-fonts");
+  for (const [vfsKey, assetName] of Object.entries(
+    nuxtFontServerManifest.files as Record<string, string>,
+  )) {
+    const raw = await fontAssetStorage.getItemRaw(assetName);
+    if (raw == null) {
+      throw new Error(`[nuxt-pdfmake] Missing packaged @nuxt/fonts asset: ${assetName}`);
+    }
+    nuxtFontVfs[vfsKey] = Buffer.from(raw as Uint8Array).toString("base64");
   }
+  if (Object.keys(nuxtFontVfs).length > 0) {
+    pdfMake.addVirtualFileSystem(nuxtFontVfs);
+  }
+
+  const allFonts = mergeFontDescriptors(
+    fontDescriptors as Record<string, TFontFamilyTypes>,
+    cdnFonts as Record<string, TFontFamilyTypes>,
+    nuxtFontServerManifest.fonts as Record<string, TFontFamilyTypes>,
+    useDefaultRoboto,
+  );
 
   pdfMake.addFonts(allFonts);
 

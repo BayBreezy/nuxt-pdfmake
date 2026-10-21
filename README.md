@@ -22,6 +22,7 @@ Easily add <a target="_blank" href="http://pdfmake.org/#/">pdfMake</a> to your N
 
 - `usePDFMake` composable auto-imported on the client
 - Server-side PDF generation via `createPDFBuffer`, `createPDFBase64`, and `useServerPDFMake`
+- Optional reuse of fonts resolved by `@nuxt/fonts` without embedding them in client JavaScript
 - Pre-built `POST /_pdfmake/generate` API endpoint (dev only by default)
 - Font management — embed custom fonts, load Google Fonts at build time, or reference CDN URLs
 - Nuxt DevTools panel to inspect fonts and module config
