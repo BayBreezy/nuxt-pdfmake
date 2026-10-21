@@ -4,7 +4,7 @@ command = "cd .. && bun run netlify"
 publish = "dist"
 
 [build.environment]
-BUN_VERSION = "1.4.2"
+BUN_VERSION = "1.4.3"
 NODE_VERSION = "22"
 HUSKY = "0"
 NODE_OPTIONS = "--max-old-space-size=7120"
