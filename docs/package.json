@@ -23,14 +23,14 @@
     "@baybreezy/docd": "latest",
     "@faker-js/faker": "^10.6.0",
     "@vite-pwa/nuxt": "^1.1.1",
-    "nuxt": "^4.6.0",
-    "vue": "^3.5.43",
+    "nuxt": "^4.6.2",
+    "vue": "^3.5.44",
     "vue-router": "5.4.0"
   },
   "devDependencies": {
-    "node-gyp": "^11.5.0"
+    "node-gyp": "^13.1.0"
   },
-  "packageManager": "bun@1.4.2",
+  "packageManager": "bun@1.4.3",
   "trustedDependencies": [
     "@morev/vue-transitions",
     "@parcel/watcher",

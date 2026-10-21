@@ -58,29 +58,29 @@
     "test:watch": "vitest watch"
   },
   "dependencies": {
-    "@nuxt/devtools-kit": "^4.0.0-beta.4",
-    "@nuxt/kit": "^4.6.0",
+    "@nuxt/devtools-kit": "^4.0.0-beta.7",
+    "@nuxt/kit": "^4.6.2",
     "@types/pdfmake": "^0.3.3",
     "defu": "^6.1.7",
     "google-font-metadata": "^6.0.8",
-    "pdfmake": "^0.3.11"
+    "pdfmake": "^0.3.12"
   },
   "devDependencies": {
-    "@commitlint/cli": "^21.2.3",
-    "@commitlint/config-conventional": "^21.2.3",
+    "@commitlint/cli": "^21.2.4",
+    "@commitlint/config-conventional": "^21.2.4",
     "@nuxt/module-builder": "^1.0.3",
-    "@nuxt/schema": "^4.6.0",
-    "@nuxt/test-utils": "^4.3.3",
-    "@types/node": "^26.6.4",
+    "@nuxt/schema": "^4.6.2",
+    "@nuxt/test-utils": "^4.3.4",
+    "@types/node": "^26.6.5",
     "changelogen": "^0.6.2",
     "husky": "^9.1.7",
     "lint-staged": "^17.6.0",
-    "nuxt": "^4.6.0",
-    "oxfmt": "^0.72.0",
-    "oxlint": "^1.87.0",
+    "nuxt": "^4.6.2",
+    "oxfmt": "^0.74.0",
+    "oxlint": "^1.89.0",
     "typescript": "^6.0.3",
-    "vitest": "^5.0.3",
-    "vue-tsc": "^3.3.12"
+    "vitest": "^5.0.5",
+    "vue-tsc": "^3.3.13"
   },
   "lint-staged": {
     "src/**/*.{ts,vue}": [
@@ -92,7 +92,7 @@
       "oxfmt"
     ]
   },
-  "packageManager": "bun@1.4.2",
+  "packageManager": "bun@1.4.3",
   "trustedDependencies": [
     "@parcel/watcher",
     "esbuild",
